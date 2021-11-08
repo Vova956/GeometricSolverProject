@@ -58,4 +58,9 @@
     <string name="vanya_sps_bro">VANYA SPS BRO</string>
     <string name="invalid_math_input">INVALID MATH INPUT"</string>
     <string name="invalid_input">INVALID INPUT"</string>
+    <string name="b">b =</string>
+    <string name="c">c =</string>
+    <string name="beta">β =</string>
+    <string name="gamma">γ =</string>
+    <string name="alpha">α =</string>
 </resources>
