@@ -17,8 +17,42 @@ public class Calculation2SolveClass {
         this.angle_c = angle_c;
     }
 
-    private void solveTriangleByThreeSides(){
-        
+    private Double cosinusTheoremForAngle(SquareNumber oppositeSide, SquareNumber side1, SquareNumber side2) {
+        // cos A = (b^2 + c^2 - a^2) / 2bc, where A = our angle, a = opposite side to that angle and b, c are the other two sides
+
+        SumOfSquareNumbers sum = new SumOfSquareNumbers();
+
+        sum.addToSum(side1.getSquareOf());
+        sum.addToSum(side2.getSquareOf());
+        sum.addToSum(oppositeSide.getSquareOf().changeSign());
+
+        sum.divide(2);
+        sum.divide(side1);
+        sum.divide(side2);
+
+        return Math.acos(sum.toDouble());
+    }
+
+    private SumOfSquareNumbers cosinusTheoremForSide(SquareNumber side1, SquareNumber side2, Double angle) { //can I return a SquareNumber somehow?
+        SumOfSquareNumbers sum = new SumOfSquareNumbers();
+        SumOfSquareNumbers sum2 = new SumOfSquareNumbers();
+
+        sum.addToSum(side1.getSquareOf());
+        sum.addToSum(side2.getSquareOf());
+        sum.addToSum(side2.getSquareOf());
+
+        SquareNumber buff = side1.getMultiply(side2);
+        //you don`t have a method to multiply a sum. Do I have to divide by 1/n?
+        //i don`t have any time left, so I`ll just push what I have
+
+        return sum;
+
+    }
+
+    private void solveTriangleByThreeSides() {
+        angle_a = cosinusTheoremForAngle(side_a, side_b, side_c);
+        angle_b = cosinusTheoremForAngle(side_b, side_a, side_c);
+        angle_c = 180 - angle_a - angle_b;
     }
 
     public String solve(){
@@ -75,5 +109,4 @@ public class Calculation2SolveClass {
         this.angle_c = angle_c;
     }
 
-    //vova gay
 }
