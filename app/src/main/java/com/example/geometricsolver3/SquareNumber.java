@@ -2,7 +2,6 @@ package com.example.geometricsolver3;
 
 
 import java.math.BigDecimal;
-import java.util.function.DoubleBinaryOperator;
 
 public class SquareNumber {
     private double intNumber;
@@ -268,5 +267,13 @@ public class SquareNumber {
 
     public void setFromNullString(boolean fromNullString) {
         this.fromNullString = fromNullString;
+    }
+
+    public SquareNumber getSquareOf(){
+        return getMultiply(this);
+    }
+
+    public void addToInt(double a){
+        intNumber+=a;
     }
 }
