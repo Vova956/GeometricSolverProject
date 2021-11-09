@@ -74,4 +74,6 @@ public class Calculation2SolveClass {
     public void setAngle_c(double angle_c) {
         this.angle_c = angle_c;
     }
+
+    //vova gay
 }

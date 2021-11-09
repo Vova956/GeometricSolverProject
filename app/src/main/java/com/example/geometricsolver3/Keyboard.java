@@ -15,12 +15,11 @@ public class Keyboard extends Fragment {
     private TextView[] textViews;
     private int current = 0;
 
-    private void setTextView(int difference){
+    private void setTextView(int difference) {
         if(current + difference >= 0 && current + difference < textViews.length){
             current += difference;
         }
     }
-
 
     public void setTextViewIndex(int index){
         current = index;
