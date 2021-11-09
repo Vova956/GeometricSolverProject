@@ -1,4 +1,5 @@
 package com.example.geometricsolver3;
+
 import java.util.ArrayList;
 
 public class SumOfSquareNumbers {
@@ -52,56 +53,62 @@ public class SumOfSquareNumbers {
     public boolean canDivide(double a){
         int amount = 0;
         for (int i = 0; i < sum.size(); i++) {
-            if(sum.get(i).getIntNumber() % a == 0)
+            if(sum.get(i).getIntNumber() % a == 0) {
                 amount++;
-        }
-
-        return amount == sum.size();
-    }
-
-    public boolean canDivideSquare(SquareNumber squareNumber){
-        int amount = 0;
-        for (int i = 0; i < sum.size(); i++) {
-            if(sum.get(i).getSquareNumber() % squareNumber.getSquareNumber() == 0)
-                amount++;
-        }
-
-        return amount == sum.size();
-    }
-
-    public boolean canDivideInt(SquareNumber squareNumber){
-        int amount = 0;
-        if(squareNumber.getIntNumber() == 1)
-            return false;
-
-        for (int i = 0; i < sum.size(); i++) {
-            if(sum.get(i).getIntNumber() % squareNumber.getIntNumber() == 0)
-                amount++;
-        }
-
-        return amount == sum.size();
-    }
-
-    public void divide(double a){
-        if(canDivide(a)){
-            for (int i = 0; i < sum.size(); i++) {
-                sum.set(i,sum.get(i).getDivide(a));
             }
         }
+
+
+        return amount == sum.size();
+    }
+
+    public boolean canDivideSquare(double a){
+        int amount = 0;
+        for (int i = 0; i < sum.size(); i++) {
+            if(sum.get(i).getSquareNumber() % a == 0)
+                amount++;
+        }
+
+        return amount == sum.size();
+    }
+
+    public double divide(double a){
+        int multiply = 1;
+        if(a < 0)
+            multiply*=-1;
+        for (int i = 2; i <= Math.abs(a); i++) {
+            if(a % i == 0 && canDivide(i)){
+
+                for (int j = 0; j < sum.size(); j++) {
+                    sum.set(j,sum.get(j).getDivide(i*multiply));
+                }
+
+                a/=i;
+                i = 1;
+            }
+        }
+
+        return a*multiply;
     }
 
     public void divide(SquareNumber squareNumber){
-        if(canDivideInt(squareNumber)){
-            divide(squareNumber.getIntNumber());
-        }
-        if(canDivideSquare(squareNumber)){
+        double intNumber  = divide(squareNumber.getIntNumber());
 
-            SquareNumber buff = new SquareNumber("√(" + squareNumber.getSquareNumber() + ")");
-            for (int i = 0; i < sum.size(); i++) {
-                sum.set(i, sum.get(i).getDivide(buff));
+        double sq = squareNumber.getSquareNumber();
+        for (int i = 2; i <= sq; i++) {
+            if(sq % i == 0 && canDivideSquare(i)){
+
+                for (int j = 0; j < sum.size(); j++) {
+                    sum.set(j,sum.get(j).getDivideSquare(i));
+                }
+
+                sq/=i;
+                i = 1;
             }
-
         }
+
+        squareNumber.setIntNumber(intNumber);
+        squareNumber.setSquareNumber(sq);
     }
 
 }

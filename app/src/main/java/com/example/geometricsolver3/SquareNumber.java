@@ -1,4 +1,5 @@
 package com.example.geometricsolver3;
+
 import java.math.BigDecimal;
 
 public class SquareNumber {
@@ -73,24 +74,30 @@ public class SquareNumber {
             63504, 64009, 64516, 65025
     };
 
-    public SquareNumber() {
+    public SquareNumber(){
         intNumber = 0;
         squareNumber = 0;
     }
 
     public SquareNumber(String str) {
-        if (str.length() == 0) {
+        if(str.length() == 0){
             intNumber = 1;
             squareNumber = 1;
             fromNullString = true;
-        } else if (str.charAt(0) == '√') {
-            intNumber = 1;
-            squareNumber = Double.parseDouble(str.substring(2, str.length() - 1));
+        }
 
-        } else if (!str.contains("√")) {
+        else if(str.charAt(0) == '√'){
+            intNumber = 1;
+            squareNumber = Double.parseDouble(str.substring(2,str.length()-1));
+
+        }
+
+        else if(!str.contains("√")){
             intNumber = Double.parseDouble(str);
             squareNumber = 1;
-        } else {
+        }
+
+        else {
             String[] split = str.split("√", 2);
             intNumber = Double.parseDouble(split[0]);
 
@@ -98,10 +105,11 @@ public class SquareNumber {
             squareNumber = Double.parseDouble(buff.substring(1, buff.length() - 1));
         }
 
-        if (intNumber == 0 || squareNumber == 0 || squareNumber < 0) {
+        if(intNumber == 0 || squareNumber == 0 || squareNumber < 0) {
             intNumber = 0;
             squareNumber = 0;
-        } else {
+        }
+        else {
             SquareNumber a = Sqrt(squareNumber);
 
             intNumber *= a.getIntNumber();
@@ -111,15 +119,16 @@ public class SquareNumber {
 
     public SquareNumber(double intNumber, double squareNumber1) {
         this.intNumber = intNumber;
-        this.squareNumber = ((int) (squareNumber1 * 10000.0)) / 10000.0;
+        this.squareNumber = ((int)(squareNumber1*10000.0))/10000.0;
 
 
     }
 
-    private SquareNumber Sqrt(double x) {
-        if (x == (int) x) {
-            return SqrtInt((int) x);
-        } else {
+    private SquareNumber Sqrt(double x){
+        if(x == (int)x){
+            return SqrtInt((int)x);
+        }
+        else{
             return SqrtDouble(x);
         }
     }
@@ -129,20 +138,23 @@ public class SquareNumber {
         int result = (int) (x * Math.pow(10, amountAfterDot));
 
 
+
         SquareNumber squareNumber = SqrtInt(result);
 
 
         if (amountAfterDot % 2 == 0) {
-            return new SquareNumber((int) (squareNumber.intNumber * Math.pow(0.1, amountAfterDot / 2) * 10000) / 10000.0,
-                    (int) (squareNumber.squareNumber * 10000) / 10000.0);
-        } else {
-            return new SquareNumber(((int) (squareNumber.intNumber * Math.pow(0.1, (amountAfterDot - 1) / 2) * 10000) / 10000.0),
-                    ((int) (squareNumber.squareNumber * 0.1 * 10000)) / 10000.0);
+            return new SquareNumber((int)(squareNumber.intNumber*Math.pow(0.1,amountAfterDot/2)*10000)/10000.0,
+                    (int)(squareNumber.squareNumber*10000)/10000.0);
+        }
+
+        else {
+            return new SquareNumber(((int)(squareNumber.intNumber*Math.pow(0.1,(amountAfterDot-1)/2)*10000)/10000.0),
+                    ((int)(squareNumber.squareNumber*0.1*10000))/10000.0);
         }
 
     }
 
-    private SquareNumber SqrtInt(int x) {
+    private SquareNumber SqrtInt(int x){
         int answer = 1;
 
         for (int i = 0; i < squares.length; i++) {
@@ -175,32 +187,33 @@ public class SquareNumber {
         this.squareNumber = squareNumber;
     }
 
-    private void appendTo(double d, StringBuilder stringBuilder) {
-        if (d == (int) d)
-            stringBuilder.append((int) d);
+    private void appendTo(double d,StringBuilder stringBuilder){
+        if(d == (int)d)
+            stringBuilder.append((int)d);
         else
             stringBuilder.append(d);
     }
 
     @Override
-    public String toString() {
+    public String toString(){
         StringBuilder stringBuilder = new StringBuilder();
-        if (intNumber != 1)
-            appendTo(intNumber, stringBuilder);
+        if(intNumber != 1)
+            appendTo(intNumber,stringBuilder);
 
-        if (intNumber == 1 && squareNumber == 1)
-            appendTo(intNumber, stringBuilder);
+        if(intNumber == 1 && squareNumber == 1)
+            appendTo(intNumber,stringBuilder);
 
 
-        if (squareNumber != 1) {
+
+        if(squareNumber != 1) {
             stringBuilder.append("√");
-            appendTo(squareNumber, stringBuilder);
+            appendTo(squareNumber,stringBuilder);
         }
 
         return stringBuilder.toString();
     }
 
-    public void multiply(SquareNumber squareNumber) {
+    public void multiply(SquareNumber squareNumber){
         this.intNumber *= squareNumber.intNumber;
         this.squareNumber *= squareNumber.squareNumber;
 
@@ -212,13 +225,13 @@ public class SquareNumber {
 
     }
 
-    public void multiply(int a) {
+    public void multiply(int a){
         this.intNumber *= a;
     }
 
-    public SquareNumber getMultiply(SquareNumber squareNumber) {
-        SquareNumber squareNumber1 = new SquareNumber(this.intNumber * squareNumber.intNumber,
-                this.squareNumber * squareNumber.squareNumber);
+    public SquareNumber getMultiply(SquareNumber squareNumber){
+        SquareNumber squareNumber1 =  new SquareNumber(this.intNumber*squareNumber.intNumber,
+                this.squareNumber*squareNumber.squareNumber);
 
         SquareNumber a = Sqrt(squareNumber1.squareNumber);
 
@@ -228,49 +241,49 @@ public class SquareNumber {
         return squareNumber1;
     }
 
-    public SquareNumber getMultiply(int a) {
-        return new SquareNumber(intNumber * a, squareNumber);
+    public SquareNumber getMultiply(int a){
+        return new SquareNumber(intNumber*a,squareNumber);
     }
 
-    public double toDouble() {
+    public double toDouble(){
         return intNumber * Math.sqrt(squareNumber);
     }
 
-    public boolean equals(SquareNumber squareNumber) {
+    public boolean equals(SquareNumber squareNumber){
         return this.intNumber == squareNumber.intNumber && this.squareNumber == squareNumber.squareNumber;
     }
 
-    public SquareNumber getDivide(SquareNumber squareNumber1) {
-        SquareNumber buff = new SquareNumber(this.intNumber / squareNumber1.intNumber,
-                this.squareNumber / squareNumber1.squareNumber);
+    public SquareNumber getDivide(SquareNumber squareNumber1){
+        SquareNumber buff = new SquareNumber(this.intNumber/squareNumber1.intNumber,
+                this.squareNumber/squareNumber1.squareNumber);
 
         return buff;
     }
 
-    public SquareNumber getDivide(double a) {
-        return new SquareNumber(intNumber / a, squareNumber);
+    public SquareNumber getDivide(double a){
+        return new SquareNumber(intNumber/a,squareNumber);
     }
 
-    public void divide(double a) {
-        intNumber /= a;
-    }
+    public SquareNumber getDivideSquare(double a){return new SquareNumber(intNumber,squareNumber/a);}
+
+    public void divide(double a){intNumber /= a;}
 
     public void setFromNullString(boolean fromNullString) {
         this.fromNullString = fromNullString;
     }
 
-    public SquareNumber getSquareOf() {
+    public SquareNumber getSquareOf(){
         return getMultiply(this);
     }
 
-    public void addToInt(double a) {
-        intNumber += a;
+    public void addToInt(double a){
+        intNumber+=a;
     }
 
-    public String getAbsStr() {
-        if (intNumber > 0)
+    public String getAbsStr(){
+        if(intNumber > 0)
             return toString();
-        else {
+        else{
             intNumber *= -1;
             String buff = toString();
             intNumber *= -1;
@@ -279,4 +292,8 @@ public class SquareNumber {
 
     }
 
+    public SquareNumber changeSign(){
+        this.intNumber*=-1;
+        return this;
+    }
 }
