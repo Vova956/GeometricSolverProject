@@ -15,9 +15,9 @@ public class Keyboard extends Fragment {
     private TextView[] textViews;
     private int current = 0;
 
-    private void setTextView(int deference){
-        if(current + deference >= 0 && current + deference < textViews.length){
-            current+=deference;
+    private void setTextView(int difference){
+        if(current + difference >= 0 && current + difference < textViews.length){
+            current += difference;
         }
     }
 
@@ -142,9 +142,6 @@ public class Keyboard extends Fragment {
             if(stringBuffer.length()-1 >= 0)
                 textViews[current].setText(stringBuffer.deleteCharAt(stringBuffer.length()-1));
         });
-
-
-
 
 
 

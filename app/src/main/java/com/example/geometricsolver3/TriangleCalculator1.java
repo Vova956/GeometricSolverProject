@@ -149,7 +149,6 @@ public class TriangleCalculator1 extends AppCompatActivity {
                 answer.setText(e.getMessage());
             }
 
-
         });
 
 
