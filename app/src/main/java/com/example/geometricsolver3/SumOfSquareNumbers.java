@@ -1,5 +1,4 @@
 package com.example.geometricsolver3;
-
 import java.util.ArrayList;
 
 public class SumOfSquareNumbers {
@@ -21,8 +20,8 @@ public class SumOfSquareNumbers {
                 return;
             }
         }
-
         sum.add(squareNumber);
+
     }
 
     @Override
@@ -53,23 +52,23 @@ public class SumOfSquareNumbers {
     public boolean canDivide(double a){
         int amount = 0;
         for (int i = 0; i < sum.size(); i++) {
-            if(sum.get(i).getIntNumber() % a == 0) {
-                amount++;
+            if(sum.get(i).getIntNumber() % a != 0) {
+                return false;
             }
         }
 
 
-        return amount == sum.size();
+        return true;
     }
 
     public boolean canDivideSquare(double a){
         int amount = 0;
         for (int i = 0; i < sum.size(); i++) {
-            if(sum.get(i).getSquareNumber() % a == 0)
-                amount++;
+            if(sum.get(i).getSquareNumber() % a != 0)
+                return false;
         }
 
-        return amount == sum.size();
+        return true;
     }
 
     public double divide(double a){
@@ -91,7 +90,7 @@ public class SumOfSquareNumbers {
         return a*multiply;
     }
 
-    public void divide(SquareNumber squareNumber){
+    public SquareNumber divide(SquareNumber squareNumber){
         double intNumber  = divide(squareNumber.getIntNumber());
 
         double sq = squareNumber.getSquareNumber();
@@ -107,8 +106,19 @@ public class SumOfSquareNumbers {
             }
         }
 
-        squareNumber.setIntNumber(intNumber);
-        squareNumber.setSquareNumber(sq);
+        return new SquareNumber(intNumber,sq);
+    }
+
+    public int getSize(){return sum.size();}
+
+    public SquareNumber get(int index){return sum.get(index);}
+
+    public SumOfSquareNumbers copy(){
+        SumOfSquareNumbers sumOfSquareNumbers = new SumOfSquareNumbers();
+        for (int i = 0; i < sum.size(); i++) {
+            sumOfSquareNumbers.addToSum(sum.get(i));
+        }
+        return sumOfSquareNumbers;
     }
 
 }

@@ -241,7 +241,7 @@ public class SquareNumber {
         return squareNumber1;
     }
 
-    public SquareNumber getMultiply(int a){
+    public SquareNumber getMultiply(double a){
         return new SquareNumber(intNumber*a,squareNumber);
     }
 
@@ -254,8 +254,9 @@ public class SquareNumber {
     }
 
     public SquareNumber getDivide(SquareNumber squareNumber1){
-        SquareNumber buff = new SquareNumber(this.intNumber/squareNumber1.intNumber,
+        SquareNumber buff = new SquareNumber(((int)(this.intNumber*1000.0/squareNumber1.intNumber))/1000.0,
                 this.squareNumber/squareNumber1.squareNumber);
+
 
         return buff;
     }

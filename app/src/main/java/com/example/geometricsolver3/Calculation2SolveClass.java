@@ -1,5 +1,4 @@
 package com.example.geometricsolver3;
-
 public class Calculation2SolveClass {
     private SquareNumber side_a;
     private SquareNumber side_b;
@@ -17,48 +16,828 @@ public class Calculation2SolveClass {
         this.angle_c = angle_c;
     }
 
-    private Double cosinusTheoremForAngle(SquareNumber oppositeSide, SquareNumber side1, SquareNumber side2) {
-        // cos A = (b^2 + c^2 - a^2) / 2bc, where A = our angle, a = opposite side to that angle and b, c are the other two sides
-
+    public double cosTheoremForAngle(SquareNumber oppositeSide, SquareNumber side1, SquareNumber side2) {
         SumOfSquareNumbers sum = new SumOfSquareNumbers();
 
         sum.addToSum(side1.getSquareOf());
         sum.addToSum(side2.getSquareOf());
         sum.addToSum(oppositeSide.getSquareOf().changeSign());
 
-        sum.divide(2);
-        sum.divide(side1);
-        sum.divide(side2);
+        double rest1 = sum.divide(2);
+        SquareNumber rest2 = sum.divide(side1.getMultiply(side2));
 
-        return Math.acos(sum.toDouble());
+        if (sum.getSize() == 1) {
+            return AngleFunctions.getAngleByCos(sum.get(0).getDivide(rest1).getDivide(rest2));
+        }
+
+        return Math.toDegrees(Math.acos(sum.toDouble() / (rest1 * rest2.toDouble())));
     }
 
-    private SumOfSquareNumbers cosinusTheoremForSide(SquareNumber side1, SquareNumber side2, Double angle) { //can I return a SquareNumber somehow?
+    public SquareRootSum cosTheoremForSide(SquareNumber side1, SquareNumber side2, double angle) {
         SumOfSquareNumbers sum = new SumOfSquareNumbers();
-        SumOfSquareNumbers sum2 = new SumOfSquareNumbers();
 
         sum.addToSum(side1.getSquareOf());
         sum.addToSum(side2.getSquareOf());
-        sum.addToSum(side2.getSquareOf());
+        sum.addToSum(side1.getMultiply(side2).getMultiply(-2).getMultiply(AngleFunctions.getCos(angle)));
 
-        SquareNumber buff = side1.getMultiply(side2);
-        //you don`t have a method to multiply a sum. Do I have to divide by 1/n?
-        //i don`t have any time left, so I`ll just push what I have
 
-        return sum;
+        SquareRootSum sq = new SquareRootSum(sum);
+        sq.getIntNumber();
+        return sq;
 
     }
 
     private void solveTriangleByThreeSides() {
-        angle_a = cosinusTheoremForAngle(side_a, side_b, side_c);
-        angle_b = cosinusTheoremForAngle(side_b, side_a, side_c);
-        angle_c = 180 - angle_a - angle_b;
+        angle_a = cosTheoremForAngle(side_a, side_b, side_c);
+        angle_b = cosTheoremForAngle(side_b, side_a, side_c);
+        angle_c = cosTheoremForAngle(side_c, side_b, side_a);
     }
 
-    public String solve(){
+    public String solve() throws Exception {
         StringBuilder stringBuilder = new StringBuilder();
+        int AmountOfKnownSides = getAmountOfKnownSides();
+        int AmountOfKnownAngles = getAmountOfKnownAngles();
 
-        return stringBuilder.toString();
+        if(AmountOfKnownSides == 3){
+            if (side_a.toDouble() + side_b.toDouble() < side_c.toDouble() || side_b.toDouble() + side_c.toDouble() < side_a.toDouble() ||
+                    side_a.toDouble() + side_c.toDouble() < side_b.toDouble()) {
+                throw new Exception("TRIANGLE CAN NOT EXIST");
+            }
+        }
+
+
+        if (angle_a + angle_c + angle_b > 180) {
+            throw new Exception("ANGLE SUM CAN NOT BE MORE THAN 180");
+        }
+
+        if (!side_a.fromNullString && !side_b.fromNullString && !side_c.fromNullString) {
+            if (angle_a != 0) {
+                if (cosTheoremForAngle(side_a, side_b, side_c) != angle_a)
+                    throw new Exception("a² ≠ b² + c² -2bc * cosα");
+            }
+
+            if (angle_b != 0) {
+                if (cosTheoremForAngle(side_b, side_a, side_c) != angle_b)
+                    throw new Exception("b² ≠ a² + c² -2ac * cosβ");
+            }
+
+            if (angle_c != 0) {
+                if (cosTheoremForAngle(side_c, side_b, side_a) != angle_c)
+                    throw new Exception("c² ≠ a² + b² -2ab * cosγ");
+            }
+        }
+
+        if (!side_a.fromNullString && angle_a != 0) {
+            if (!side_b.fromNullString && angle_b != 0) {
+                if (!side_b.getMultiply(AngleFunctions.getSin(angle_a)).equals(side_a.getMultiply(AngleFunctions.getSin(angle_b))))
+                    throw new Exception("a * sinβ ≠ b * sinα");
+            }
+            if (!side_c.fromNullString && angle_c != 0) {
+                if (!side_c.getMultiply(AngleFunctions.getSin(angle_a)).equals(side_a.getMultiply(AngleFunctions.getSin(angle_c))))
+                    throw new Exception("c * sinα ≠ a * sinγ");
+            }
+        }
+
+        if (!side_c.fromNullString && angle_c != 0 && !side_b.fromNullString && angle_b != 0) {
+            if (!side_c.getMultiply(AngleFunctions.getSin(angle_b)).equals(side_b.getMultiply(AngleFunctions.getSin(angle_c))))
+                throw new Exception("c * sinβ ≠ b * sinγ");
+        }
+
+        if (!side_b.fromNullString && !side_a.fromNullString && !side_c.fromNullString && angle_a != 0 && angle_b != 0 && angle_c != 0) {
+            stringBuilder.append("Triangle is already solved");
+            return stringBuilder.toString();
+        }
+
+        if (AmountOfKnownSides == 3) {
+            if (angle_a == 0 && angle_b != 0 && angle_c != 0) {
+                angle_a = 180 - angle_b - angle_c;
+                stringBuilder.append("∠α = 180° - ∠β - ∠γ = 180° - ");
+                stringBuilder.append(angle_b);
+                stringBuilder.append("° - ");
+                stringBuilder.append(angle_c);
+                stringBuilder.append("° = ");
+                stringBuilder.append(angle_a);
+                stringBuilder.append("°");
+
+                return stringBuilder.toString();
+            }
+
+            if (angle_b == 0 && angle_a != 0 && angle_c != 0) {
+                angle_b = 180 - angle_a - angle_c;
+                stringBuilder.append("∠β = 180° - ∠α - ∠γ = 180° - ");
+                stringBuilder.append(angle_a);
+                stringBuilder.append("° - ");
+                stringBuilder.append(angle_c);
+                stringBuilder.append("° = ");
+                stringBuilder.append(angle_b);
+                stringBuilder.append("°");
+
+                return stringBuilder.toString();
+            }
+
+            if (angle_c == 0 && angle_a != 0 && angle_b != 0) {
+                angle_c = 180 - angle_a - angle_b;
+                stringBuilder.append("∠γ = 180° - ∠α - ∠β = 180° - ");
+                stringBuilder.append(angle_a);
+                stringBuilder.append("° - ");
+                stringBuilder.append(angle_b);
+                stringBuilder.append("° = ");
+                stringBuilder.append(angle_c);
+                stringBuilder.append("°");
+
+                return stringBuilder.toString();
+            }
+
+            if (angle_a != 0) {
+                angle_c = AngleFunctions.getAngleBySin(side_c.getMultiply(AngleFunctions.getSin(angle_a)).getDivide(side_a));
+                stringBuilder.append("∠γ = arcsin((c * sinα) / a) = arcsin((");
+                stringBuilder.append(side_c);
+                stringBuilder.append(" * sin");
+                stringBuilder.append(angle_a);
+                stringBuilder.append("°) /");
+                stringBuilder.append(side_a);
+                stringBuilder.append(") = ");
+                stringBuilder.append(angle_c);
+                stringBuilder.append("°\n");
+
+                angle_b = AngleFunctions.getAngleBySin(side_b.getMultiply(AngleFunctions.getSin(angle_a)).getDivide(side_a));
+                stringBuilder.append("∠β = arcsin((b * sinα) / a) = arcsin((");
+                stringBuilder.append(side_b);
+                stringBuilder.append(" * sin");
+                stringBuilder.append(angle_a);
+                stringBuilder.append("°) /");
+                stringBuilder.append(side_a);
+                stringBuilder.append(") = ");
+                stringBuilder.append(angle_b);
+                stringBuilder.append("°");
+
+                return stringBuilder.toString();
+            }
+
+            if (angle_b != 0) {
+                angle_a = AngleFunctions.getAngleBySin(side_a.getMultiply(AngleFunctions.getSin(angle_b)).getDivide(side_b));
+                stringBuilder.append("∠α = arcsin((a * sinβ) / b) = arcsin((");
+                stringBuilder.append(side_a);
+                stringBuilder.append(" * sin");
+                stringBuilder.append(angle_b);
+                stringBuilder.append("°) /");
+                stringBuilder.append(side_b);
+                stringBuilder.append(") = ");
+                stringBuilder.append(angle_a);
+                stringBuilder.append("°\n");
+
+                angle_c = AngleFunctions.getAngleBySin(side_c.getMultiply(AngleFunctions.getSin(angle_b)).getDivide(side_b));
+                stringBuilder.append("∠γ = arcsin((c * sinβ) / b) = arcsin((");
+                stringBuilder.append(side_c);
+                stringBuilder.append(" * sin");
+                stringBuilder.append(angle_b);
+                stringBuilder.append("°) /");
+                stringBuilder.append(side_b);
+                stringBuilder.append(") = ");
+                stringBuilder.append(angle_c);
+                stringBuilder.append("°");
+
+                return stringBuilder.toString();
+            }
+
+            if (angle_c != 0) {
+                angle_a = AngleFunctions.getAngleBySin(side_a.getMultiply(AngleFunctions.getSin(angle_c)).getDivide(side_c));
+                stringBuilder.append("∠α = arcsin((a * sinγ) / c) = arcsin((");
+                stringBuilder.append(side_a);
+                stringBuilder.append(" * sin");
+                stringBuilder.append(angle_c);
+                stringBuilder.append("°) /");
+                stringBuilder.append(side_c);
+                stringBuilder.append(") = ");
+                stringBuilder.append(angle_a);
+                stringBuilder.append("°\n");
+
+                angle_b = AngleFunctions.getAngleBySin(side_b.getMultiply(AngleFunctions.getSin(angle_c)).getDivide(side_c));
+                stringBuilder.append("∠β = arcsin((b * sinγ) / c) = arcsin((");
+                stringBuilder.append(side_b);
+                stringBuilder.append(" * sin");
+                stringBuilder.append(angle_c);
+                stringBuilder.append("°) /");
+                stringBuilder.append(side_c);
+                stringBuilder.append(") = ");
+                stringBuilder.append(angle_b);
+                stringBuilder.append("°");
+
+                return stringBuilder.toString();
+            } else {
+                solveTriangleByThreeSides();
+                stringBuilder.append("∠α = arccos((b² + c² - a²)/2bc) = ");
+                stringBuilder.append(angle_a);
+                stringBuilder.append("°\n");
+
+                stringBuilder.append("∠β = arccos((a² + c² - b²)/2ac) = ");
+                stringBuilder.append(angle_b);
+                stringBuilder.append("°\n");
+
+                stringBuilder.append("∠γ = arccos((a² + b² - c²)/2ab) = ");
+                stringBuilder.append(angle_c);
+                stringBuilder.append("°");
+
+                return stringBuilder.toString();
+            }
+
+
+        }
+
+        //by to sides
+        else if (AmountOfKnownSides == 2) {
+            if (AmountOfKnownAngles == 3) {
+                if (side_a.fromNullString) {
+                    side_a = side_b.getMultiply(AngleFunctions.getSin(angle_a)).getDivide(AngleFunctions.getSin(angle_b));
+                    stringBuilder.append("a = (sinα * b) / sinβ = (");
+                    stringBuilder.append(AngleFunctions.getSin(angle_a).toString());
+                    stringBuilder.append(" * ");
+                    stringBuilder.append(side_b);
+                    stringBuilder.append(") / ");
+                    stringBuilder.append(AngleFunctions.getSin(angle_b).toString());
+                    stringBuilder.append(" = ");
+                    stringBuilder.append(side_a);
+
+                    return stringBuilder.toString();
+                }
+
+                if (side_b.fromNullString) {
+                    side_b = side_a.getMultiply(AngleFunctions.getSin(angle_b)).getDivide(AngleFunctions.getSin(angle_a));
+                    stringBuilder.append("b = (sinβ * a) / sinα = (");
+                    stringBuilder.append(AngleFunctions.getSin(angle_b).toString());
+                    stringBuilder.append(" * ");
+                    stringBuilder.append(side_a);
+                    stringBuilder.append(") / ");
+                    stringBuilder.append(AngleFunctions.getSin(angle_a).toString());
+                    stringBuilder.append(" = ");
+                    stringBuilder.append(side_b);
+
+                    return stringBuilder.toString();
+                }
+
+                if (side_c.fromNullString) {
+                    side_c = side_a.getMultiply(AngleFunctions.getSin(angle_c)).getDivide(AngleFunctions.getSin(angle_a));
+                    stringBuilder.append("c = (sinγ * a) / sinα = (");
+                    stringBuilder.append(AngleFunctions.getSin(angle_c).toString());
+                    stringBuilder.append(" * ");
+                    stringBuilder.append(side_a);
+                    stringBuilder.append(") / ");
+                    stringBuilder.append(AngleFunctions.getSin(angle_a).toString());
+                    stringBuilder.append(" = ");
+                    stringBuilder.append(side_c);
+
+                    return stringBuilder.toString();
+                }
+            }
+
+            else if (getAmountOfKnownAngles() == 2) {
+                if (angle_b == 0) {
+                    angle_b = 180 - angle_a - angle_c;
+                    stringBuilder.append("∠β = 180° - ∠α - ∠γ = 180° - ");
+                    stringBuilder.append(angle_a);
+                    stringBuilder.append("° - ");
+                    stringBuilder.append(angle_c);
+                    stringBuilder.append("° = ");
+                    stringBuilder.append(angle_b);
+                    stringBuilder.append("°\n");
+
+                    stringBuilder.append(findOneSideWithThreeAngles());
+                    return stringBuilder.toString();
+                }
+
+                if (angle_a == 0) {
+                    angle_a = 180 - angle_b - angle_c;
+                    stringBuilder.append("∠α = 180° - ∠β - ∠γ = 180° - ");
+                    stringBuilder.append(angle_b);
+                    stringBuilder.append("° - ");
+                    stringBuilder.append(angle_c);
+                    stringBuilder.append("° = ");
+                    stringBuilder.append(angle_a);
+                    stringBuilder.append("°\n");
+
+                    stringBuilder.append(findOneSideWithThreeAngles());
+                    return stringBuilder.toString();
+                }
+
+                if (angle_c == 0) {
+                    angle_c = 180 - angle_a - angle_b;
+                    stringBuilder.append("∠γ = 180° - ∠α - ∠β = 180° - ");
+                    stringBuilder.append(angle_a);
+                    stringBuilder.append("° - ");
+                    stringBuilder.append(angle_b);
+                    stringBuilder.append("° = ");
+                    stringBuilder.append(angle_c);
+                    stringBuilder.append("°\n");
+
+                    stringBuilder.append(findOneSideWithThreeAngles());
+                    return stringBuilder.toString();
+                }
+
+            }
+            else if(AmountOfKnownAngles == 1){
+                if(!side_a.fromNullString && !side_b.fromNullString){
+                    if(angle_b != 0){
+                        angle_a = AngleFunctions.getAngleBySin(side_a.getMultiply(AngleFunctions.getSin(angle_b)).getDivide(side_b));
+                        stringBuilder.append("∠α = arcsin((a * sinβ) / b) = arcsin((");
+                        stringBuilder.append(side_a);
+                        stringBuilder.append(" * sin");
+                        stringBuilder.append(angle_b);
+                        stringBuilder.append("°) /");
+                        stringBuilder.append(side_b);
+                        stringBuilder.append(") = ");
+                        stringBuilder.append(angle_a);
+                        stringBuilder.append("°\n");
+
+                        angle_c = 180 - angle_a - angle_b;
+                        stringBuilder.append("∠γ = 180° - ∠α - ∠β = 180° - ");
+                        stringBuilder.append(angle_a);
+                        stringBuilder.append("° - ");
+                        stringBuilder.append(angle_b);
+                        stringBuilder.append("° = ");
+                        stringBuilder.append(angle_c);
+                        stringBuilder.append("°\n");
+
+                        side_c = side_a.getMultiply(AngleFunctions.getSin(angle_c)).getDivide(AngleFunctions.getSin(angle_a));
+                        stringBuilder.append("c = (sinγ * a) / sinα = (");
+                        stringBuilder.append(AngleFunctions.getSin(angle_c).toString());
+                        stringBuilder.append(" * ");
+                        stringBuilder.append(side_a);
+                        stringBuilder.append(") / ");
+                        stringBuilder.append(AngleFunctions.getSin(angle_a).toString());
+                        stringBuilder.append(" = ");
+                        stringBuilder.append(side_c);
+
+                        return stringBuilder.toString();
+                    }
+
+                    else if(angle_a != 0){
+                        angle_b = AngleFunctions.getAngleBySin(side_b.getMultiply(AngleFunctions.getSin(angle_a)).getDivide(side_a));
+                        stringBuilder.append("∠β = arcsin((b * sinα) / a) = arcsin((");
+                        stringBuilder.append(side_b);
+                        stringBuilder.append(" * sin");
+                        stringBuilder.append(angle_a);
+                        stringBuilder.append("°) /");
+                        stringBuilder.append(side_a);
+                        stringBuilder.append(") = ");
+                        stringBuilder.append(angle_b);
+                        stringBuilder.append("°\n");
+
+                        angle_c = 180 - angle_a - angle_b;
+                        stringBuilder.append("∠γ = 180° - ∠α - ∠β = 180° - ");
+                        stringBuilder.append(angle_a);
+                        stringBuilder.append("° - ");
+                        stringBuilder.append(angle_b);
+                        stringBuilder.append("° = ");
+                        stringBuilder.append(angle_c);
+                        stringBuilder.append("°\n");
+
+                        side_c = side_a.getMultiply(AngleFunctions.getSin(angle_c)).getDivide(AngleFunctions.getSin(angle_a));
+                        stringBuilder.append("c = (sinγ * a) / sinα = (");
+                        stringBuilder.append(AngleFunctions.getSin(angle_c).toString());
+                        stringBuilder.append(" * ");
+                        stringBuilder.append(side_a);
+                        stringBuilder.append(") / ");
+                        stringBuilder.append(AngleFunctions.getSin(angle_a).toString());
+                        stringBuilder.append(" = ");
+                        stringBuilder.append(side_c);
+
+                        return stringBuilder.toString();
+                    }
+
+                    else if(angle_c != 0){
+                        SquareRootSum defined_c = cosTheoremForSide(side_b,side_a,angle_c);
+                        stringBuilder.append("c = √(a² + b² -2ab * cosγ) = ");
+                        stringBuilder.append(defined_c.toString());
+                        stringBuilder.append("\n");
+
+                        angle_b = AngleFunctions.getAngleBySin(side_b.getMultiply(AngleFunctions.getSin(angle_c)).getDivide(defined_c.toDouble()));
+                        stringBuilder.append("∠β = arcsin((b * sinγ) / c) = arcsin((");
+                        stringBuilder.append(side_b);
+                        stringBuilder.append(" * sin");
+                        stringBuilder.append(angle_c);
+                        stringBuilder.append("°) /");
+                        stringBuilder.append(side_c);
+                        stringBuilder.append(") = ");
+                        stringBuilder.append(angle_b);
+                        stringBuilder.append("°\n");
+
+                        angle_a = 180 - angle_b - angle_c;
+                        stringBuilder.append("∠α = 180° - ∠β - ∠γ = 180° - ");
+                        stringBuilder.append(angle_b);
+                        stringBuilder.append("° - ");
+                        stringBuilder.append(angle_c);
+                        stringBuilder.append("° = ");
+                        stringBuilder.append(angle_a);
+                        stringBuilder.append("°\n");
+
+                        return stringBuilder.toString();
+                    }
+                }
+
+                if(!side_a.fromNullString && !side_c.fromNullString){
+                    if(angle_a != 0){
+                        angle_c = AngleFunctions.getAngleBySin(side_c.getMultiply(AngleFunctions.getSin(angle_a)).getDivide(side_a));
+                        stringBuilder.append("∠γ = arcsin((c * sinα) / a) = arcsin((");
+                        stringBuilder.append(side_c);
+                        stringBuilder.append(" * sin");
+                        stringBuilder.append(angle_a);
+                        stringBuilder.append("°) /");
+                        stringBuilder.append(side_a);
+                        stringBuilder.append(") = ");
+                        stringBuilder.append(angle_c);
+                        stringBuilder.append("°\n");
+
+                        angle_b = 180 - angle_a - angle_c;
+                        stringBuilder.append("∠β = 180° - ∠α - ∠γ = 180° - ");
+                        stringBuilder.append(angle_a);
+                        stringBuilder.append("° - ");
+                        stringBuilder.append(angle_c);
+                        stringBuilder.append("° = ");
+                        stringBuilder.append(angle_b);
+                        stringBuilder.append("°\n");
+
+                        side_b = side_a.getMultiply(AngleFunctions.getSin(angle_b)).getDivide(AngleFunctions.getSin(angle_a));
+                        stringBuilder.append("b = (sinβ * a) / sinα = (");
+                        stringBuilder.append(AngleFunctions.getSin(angle_b).toString());
+                        stringBuilder.append(" * ");
+                        stringBuilder.append(side_a);
+                        stringBuilder.append(") / ");
+                        stringBuilder.append(AngleFunctions.getSin(angle_a).toString());
+                        stringBuilder.append(" = ");
+                        stringBuilder.append(side_b);
+
+                        return stringBuilder.toString();
+                    }
+
+                    else if(angle_c != 0){
+                        angle_a = AngleFunctions.getAngleBySin(side_a.getMultiply(AngleFunctions.getSin(angle_c)).getDivide(side_c));
+                        stringBuilder.append("∠α = arcsin((a * sinγ) / c) = arcsin((");
+                        stringBuilder.append(side_a);
+                        stringBuilder.append(" * sin");
+                        stringBuilder.append(angle_c);
+                        stringBuilder.append("°) /");
+                        stringBuilder.append(side_c);
+                        stringBuilder.append(") = ");
+                        stringBuilder.append(angle_a);
+                        stringBuilder.append("°\n");
+
+                        angle_b = 180 - angle_a - angle_c;
+                        stringBuilder.append("∠β = 180° - ∠α - ∠γ = 180° - ");
+                        stringBuilder.append(angle_a);
+                        stringBuilder.append("° - ");
+                        stringBuilder.append(angle_c);
+                        stringBuilder.append("° = ");
+                        stringBuilder.append(angle_b);
+                        stringBuilder.append("°\n");
+
+                        side_b = side_a.getMultiply(AngleFunctions.getSin(angle_b)).getDivide(AngleFunctions.getSin(angle_a));
+                        stringBuilder.append("b = (sinβ * a) / sinα = (");
+                        stringBuilder.append(AngleFunctions.getSin(angle_b).toString());
+                        stringBuilder.append(" * ");
+                        stringBuilder.append(side_a);
+                        stringBuilder.append(") / ");
+                        stringBuilder.append(AngleFunctions.getSin(angle_a).toString());
+                        stringBuilder.append(" = ");
+                        stringBuilder.append(side_b);
+
+                        return stringBuilder.toString();
+                    }
+
+                    else if(angle_b != 0){
+                        SquareRootSum defined_b = cosTheoremForSide(side_c,side_a,angle_b);
+                        stringBuilder.append("b = √(a² + c² -2ac * cosβ = ");
+                        stringBuilder.append(defined_b.toString());
+                        stringBuilder.append("\n");
+
+                        angle_a = AngleFunctions.getAngleBySin(side_a.getMultiply(AngleFunctions.getSin(angle_b)).getDivide(defined_b.toDouble()));
+                        stringBuilder.append("∠α = arcsin((a * sinβ) / b) = arcsin((");
+                        stringBuilder.append(side_a);
+                        stringBuilder.append(" * sin");
+                        stringBuilder.append(angle_b);
+                        stringBuilder.append("°) /");
+                        stringBuilder.append(side_b);
+                        stringBuilder.append(") = ");
+                        stringBuilder.append(angle_a);
+                        stringBuilder.append("°\n");
+
+                        angle_c = 180 - angle_a - angle_b;
+                        stringBuilder.append("∠γ = 180° - ∠α - ∠β = 180° - ");
+                        stringBuilder.append(angle_a);
+                        stringBuilder.append("° - ");
+                        stringBuilder.append(angle_b);
+                        stringBuilder.append("° = ");
+                        stringBuilder.append(angle_c);
+                        stringBuilder.append("°\n");
+
+
+                        return stringBuilder.toString();
+
+                    }
+                }
+
+                if(!side_b.fromNullString && !side_c.fromNullString){
+                    if(angle_b != 0){
+                        angle_c = AngleFunctions.getAngleBySin(side_c.getMultiply(AngleFunctions.getSin(angle_b)).getDivide(side_b));
+                        stringBuilder.append("∠γ = arcsin((c * sinβ) / b) = arcsin((");
+                        stringBuilder.append(side_c);
+                        stringBuilder.append(" * sin");
+                        stringBuilder.append(angle_b);
+                        stringBuilder.append("°) /");
+                        stringBuilder.append(side_b);
+                        stringBuilder.append(") = ");
+                        stringBuilder.append(angle_c);
+                        stringBuilder.append("°\n");
+
+                        angle_a = 180 - angle_b - angle_c;
+                        stringBuilder.append("∠α = 180° - ∠β - ∠γ = 180° - ");
+                        stringBuilder.append(angle_b);
+                        stringBuilder.append("° - ");
+                        stringBuilder.append(angle_c);
+                        stringBuilder.append("° = ");
+                        stringBuilder.append(angle_a);
+                        stringBuilder.append("°\n");
+
+                        side_a = side_b.getMultiply(AngleFunctions.getSin(angle_a)).getDivide(AngleFunctions.getSin(angle_b));
+                        stringBuilder.append("a = (sinα * b) / sinβ = (");
+                        stringBuilder.append(AngleFunctions.getSin(angle_a).toString());
+                        stringBuilder.append(" * ");
+                        stringBuilder.append(side_b);
+                        stringBuilder.append(") / ");
+                        stringBuilder.append(AngleFunctions.getSin(angle_b).toString());
+                        stringBuilder.append(" = ");
+                        stringBuilder.append(side_a);
+
+                        return stringBuilder.toString();
+                    }
+
+                    else if(angle_c != 0){
+                        angle_b = AngleFunctions.getAngleBySin(side_b.getMultiply(AngleFunctions.getSin(angle_c)).getDivide(side_c));
+                        stringBuilder.append("∠β = arcsin((b * sinγ) / c) = arcsin((");
+                        stringBuilder.append(side_b);
+                        stringBuilder.append(" * sin");
+                        stringBuilder.append(angle_c);
+                        stringBuilder.append("°) /");
+                        stringBuilder.append(side_c);
+                        stringBuilder.append(") = ");
+                        stringBuilder.append(angle_b);
+                        stringBuilder.append("°\n");
+
+                        angle_a = 180 - angle_b - angle_c;
+                        stringBuilder.append("∠α = 180° - ∠β - ∠γ = 180° - ");
+                        stringBuilder.append(angle_b);
+                        stringBuilder.append("° - ");
+                        stringBuilder.append(angle_c);
+                        stringBuilder.append("° = ");
+                        stringBuilder.append(angle_a);
+                        stringBuilder.append("°\n");
+
+                        side_a = side_b.getMultiply(AngleFunctions.getSin(angle_a)).getDivide(AngleFunctions.getSin(angle_b));
+                        stringBuilder.append("a = (sinα * b) / sinβ = (");
+                        stringBuilder.append(AngleFunctions.getSin(angle_a).toString());
+                        stringBuilder.append(" * ");
+                        stringBuilder.append(side_b);
+                        stringBuilder.append(") / ");
+                        stringBuilder.append(AngleFunctions.getSin(angle_b).toString());
+                        stringBuilder.append(" = ");
+                        stringBuilder.append(side_a);
+
+                        return stringBuilder.toString();
+                    }
+
+                    else if(angle_a != 0){
+                        SquareRootSum defined_a = cosTheoremForSide(side_c,side_b,angle_a);
+                        stringBuilder.append("a = √(b² + c² -2bc * cosα = ");
+                        stringBuilder.append(defined_a.toString());
+                        stringBuilder.append("\n");
+
+                        angle_b = AngleFunctions.getAngleBySin(side_b.getMultiply(AngleFunctions.getSin(angle_a)).getDivide(defined_a.toDouble()));
+                        stringBuilder.append("∠β = arcsin((b * sinα) / a) = arcsin((");
+                        stringBuilder.append(side_b);
+                        stringBuilder.append(" * sin");
+                        stringBuilder.append(angle_a);
+                        stringBuilder.append("°) /");
+                        stringBuilder.append(side_a);
+                        stringBuilder.append(") = ");
+                        stringBuilder.append(angle_b);
+                        stringBuilder.append("°\n");
+
+                        angle_c = 180 - angle_a - angle_b;
+                        stringBuilder.append("∠γ = 180° - ∠α - ∠β = 180° - ");
+                        stringBuilder.append(angle_a);
+                        stringBuilder.append("° - ");
+                        stringBuilder.append(angle_b);
+                        stringBuilder.append("° = ");
+                        stringBuilder.append(angle_c);
+                        stringBuilder.append("°\n");
+
+
+                        return stringBuilder.toString();
+
+                    }
+                }
+            }
+
+
+        }
+
+        else if (AmountOfKnownSides == 1){
+            if(AmountOfKnownAngles ==  3){
+                return FindAllSidesWithThreeAngles();
+            }
+            else if(AmountOfKnownAngles == 2){
+                if (angle_b == 0) {
+                    angle_b = 180 - angle_a - angle_c;
+                    stringBuilder.append("∠β = 180° - ∠α - ∠γ = 180° - ");
+                    stringBuilder.append(angle_a);
+                    stringBuilder.append("° - ");
+                    stringBuilder.append(angle_c);
+                    stringBuilder.append("° = ");
+                    stringBuilder.append(angle_b);
+                    stringBuilder.append("°\n");
+
+                    stringBuilder.append(FindAllSidesWithThreeAngles());
+                }
+
+                if (angle_a == 0) {
+                    angle_a = 180 - angle_b - angle_c;
+                    stringBuilder.append("∠α = 180° - ∠β - ∠γ = 180° - ");
+                    stringBuilder.append(angle_b);
+                    stringBuilder.append("° - ");
+                    stringBuilder.append(angle_c);
+                    stringBuilder.append("° = ");
+                    stringBuilder.append(angle_a);
+                    stringBuilder.append("°\n");
+
+                    stringBuilder.append(FindAllSidesWithThreeAngles());
+                }
+
+                if (angle_c == 0) {
+                    angle_c = 180 - angle_a - angle_b;
+                    stringBuilder.append("∠γ = 180° - ∠α - ∠β = 180° - ");
+                    stringBuilder.append(angle_a);
+                    stringBuilder.append("° - ");
+                    stringBuilder.append(angle_b);
+                    stringBuilder.append("° = ");
+                    stringBuilder.append(angle_c);
+                    stringBuilder.append("°\n");
+
+                    stringBuilder.append(FindAllSidesWithThreeAngles());
+                }
+                stringBuilder.append(findOneSideWithThreeAngles());
+                return stringBuilder.toString();
+            }
+        }
+
+        throw new Exception("CAN NOT SOLVE TRIANGLE ");
+    }
+
+    private String FindAllSidesWithThreeAngles(){
+        StringBuilder stringBuilder1 = new StringBuilder();
+        if(!side_a.fromNullString){
+            side_b = side_a.getMultiply(AngleFunctions.getSin(angle_b)).getDivide(AngleFunctions.getSin(angle_a));
+            stringBuilder1.append("b = (sinβ * a) / sinα = (");
+            stringBuilder1.append(AngleFunctions.getSin(angle_b).toString());
+            stringBuilder1.append(" * ");
+            stringBuilder1.append(side_a);
+            stringBuilder1.append(") / ");
+            stringBuilder1.append(AngleFunctions.getSin(angle_a).toString());
+            stringBuilder1.append(" = ");
+            stringBuilder1.append(side_b);
+            stringBuilder1.append("\n");
+
+            side_c = side_a.getMultiply(AngleFunctions.getSin(angle_c)).getDivide(AngleFunctions.getSin(angle_a));
+            stringBuilder1.append("c = (sinγ * a) / sinα = (");
+            stringBuilder1.append(AngleFunctions.getSin(angle_c).toString());
+            stringBuilder1.append(" * ");
+            stringBuilder1.append(side_a);
+            stringBuilder1.append(") / ");
+            stringBuilder1.append(AngleFunctions.getSin(angle_a).toString());
+            stringBuilder1.append(" = ");
+            stringBuilder1.append(side_c);
+
+            return stringBuilder1.toString();
+        }
+
+        if(!side_b.fromNullString){
+            side_a = side_b.getMultiply(AngleFunctions.getSin(angle_a)).getDivide(AngleFunctions.getSin(angle_b));
+            stringBuilder1.append("a = (sinα * b) / sinβ = (");
+            stringBuilder1.append(AngleFunctions.getSin(angle_a).toString());
+            stringBuilder1.append(" * ");
+            stringBuilder1.append(side_b);
+            stringBuilder1.append(") / ");
+            stringBuilder1.append(AngleFunctions.getSin(angle_b).toString());
+            stringBuilder1.append(" = ");
+            stringBuilder1.append(side_a);
+            stringBuilder1.append("\n");
+
+            side_c = side_a.getMultiply(AngleFunctions.getSin(angle_c)).getDivide(AngleFunctions.getSin(angle_a));
+            stringBuilder1.append("c = (sinγ * a) / sinα = (");
+            stringBuilder1.append(AngleFunctions.getSin(angle_c).toString());
+            stringBuilder1.append(" * ");
+            stringBuilder1.append(side_a);
+            stringBuilder1.append(") / ");
+            stringBuilder1.append(AngleFunctions.getSin(angle_a).toString());
+            stringBuilder1.append(" = ");
+            stringBuilder1.append(side_c);
+
+            return stringBuilder1.toString();
+        }
+
+        if(!side_c.fromNullString){
+            side_a = side_c.getMultiply(AngleFunctions.getSin(angle_a)).getDivide(AngleFunctions.getSin(angle_c));
+            stringBuilder1.append("a = (sinα * c) / sinγ = (");
+            stringBuilder1.append(AngleFunctions.getSin(angle_a).toString());
+            stringBuilder1.append(" * ");
+            stringBuilder1.append(side_c);
+            stringBuilder1.append(") / ");
+            stringBuilder1.append(AngleFunctions.getSin(angle_c).toString());
+            stringBuilder1.append(" = ");
+            stringBuilder1.append(side_a);
+            stringBuilder1.append("\n");
+
+            side_b = side_a.getMultiply(AngleFunctions.getSin(angle_b)).getDivide(AngleFunctions.getSin(angle_a));
+            stringBuilder1.append("b = (sinβ * a) / sinα = (");
+            stringBuilder1.append(AngleFunctions.getSin(angle_b).toString());
+            stringBuilder1.append(" * ");
+            stringBuilder1.append(side_a);
+            stringBuilder1.append(") / ");
+            stringBuilder1.append(AngleFunctions.getSin(angle_a).toString());
+            stringBuilder1.append(" = ");
+            stringBuilder1.append(side_b);
+
+            return stringBuilder1.toString();
+        }
+        return "";
+    }
+
+    private String findOneSideWithThreeAngles() {
+        StringBuilder stringBuilder = new StringBuilder();
+        if (side_a.fromNullString) {
+            side_a = side_b.getMultiply(AngleFunctions.getSin(angle_a)).getDivide(AngleFunctions.getSin(angle_b));
+            stringBuilder.append("a = (sinα * b) / sinβ = (");
+            stringBuilder.append(AngleFunctions.getSin(angle_a).toString());
+            stringBuilder.append(" * ");
+            stringBuilder.append(side_b);
+            stringBuilder.append(") / ");
+            stringBuilder.append(AngleFunctions.getSin(angle_b).toString());
+            stringBuilder.append(" = ");
+            stringBuilder.append(side_a);
+
+            return stringBuilder.toString();
+        }
+
+        if (side_b.fromNullString) {
+            side_b = side_a.getMultiply(AngleFunctions.getSin(angle_b)).getDivide(AngleFunctions.getSin(angle_a));
+            stringBuilder.append("b = (sinβ * a) / sinα = (");
+            stringBuilder.append(AngleFunctions.getSin(angle_b).toString());
+            stringBuilder.append(" * ");
+            stringBuilder.append(side_a);
+            stringBuilder.append(") / ");
+            stringBuilder.append(AngleFunctions.getSin(angle_a).toString());
+            stringBuilder.append(" = ");
+            stringBuilder.append(side_b);
+
+            return stringBuilder.toString();
+        }
+
+        if (side_c.fromNullString) {
+            side_c = side_a.getMultiply(AngleFunctions.getSin(angle_c)).getDivide(AngleFunctions.getSin(angle_a));
+            stringBuilder.append("c = (sinγ * a) / sinα = (");
+            stringBuilder.append(AngleFunctions.getSin(angle_c).toString());
+            stringBuilder.append(" * ");
+            stringBuilder.append(side_a);
+            stringBuilder.append(") / ");
+            stringBuilder.append(AngleFunctions.getSin(angle_a).toString());
+            stringBuilder.append(" = ");
+            stringBuilder.append(side_c);
+
+            return stringBuilder.toString();
+        }
+        return "";
+    }
+
+    private int getAmountOfKnownSides() {
+        int amount = 0;
+        if (!side_c.fromNullString)
+            amount++;
+        if (!side_b.fromNullString)
+            amount++;
+        if (!side_a.fromNullString)
+            amount++;
+
+        return amount;
+    }
+
+    private int getAmountOfKnownAngles() {
+        int amount = 0;
+        if (angle_c != 0)
+            amount++;
+        if (angle_b != 0)
+            amount++;
+        if (angle_a != 0)
+            amount++;
+
+        return amount;
     }
 
     public SquareNumber getSide_a() {
@@ -108,5 +887,4 @@ public class Calculation2SolveClass {
     public void setAngle_c(double angle_c) {
         this.angle_c = angle_c;
     }
-
 }
