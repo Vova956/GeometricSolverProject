@@ -122,8 +122,6 @@ public class TriangleCalculator1 extends AppCompatActivity {
 
 
         solveButton.setOnClickListener(evt -> {
-            boolean canSolve = true;
-
             try {
                 if (!checkForMistakes(editText_R.getText().toString()) || !checkForMistakes(editText_r.getText().toString()) || !checkForMistakes(editText_a.getText().toString())) {
                     throw new Exception("INCORRECT INPUT");
@@ -137,11 +135,11 @@ public class TriangleCalculator1 extends AppCompatActivity {
 
                 String solutionString = solution.solve();
 
-                if (solution.canSolve) {
-                    answer.setTextColor(Color.BLACK);
-                    answer.setTextAlignment(View.TEXT_ALIGNMENT_TEXT_START);
-                    answer.setText(solutionString);
-                }
+
+                answer.setTextColor(Color.BLACK);
+                answer.setTextAlignment(View.TEXT_ALIGNMENT_TEXT_START);
+                answer.setText(solutionString);
+
 
             } catch (Exception e) {
                 answer.setTextColor(Color.RED);

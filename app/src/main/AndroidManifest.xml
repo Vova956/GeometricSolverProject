@@ -11,7 +11,9 @@
         android:theme="@style/Theme.GeometricSolver3">
         <activity
             android:name=".TriangleCalculator2"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".MainActivity"
+            android:windowSoftInputMode="stateHidden"/>
         <activity
             android:name=".TriangleCalculator1"
             android:exported="false"

@@ -230,7 +230,6 @@
         android:id="@+id/keyboard_button1"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:layout_marginStart="10dp"
         android:layout_marginTop="5dp"
         android:fontFamily="@font/montserrat"
         android:text="@string/One"

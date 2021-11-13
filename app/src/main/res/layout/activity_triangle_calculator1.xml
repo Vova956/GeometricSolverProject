@@ -70,7 +70,7 @@
         android:focusable="false"
         android:focusableInTouchMode="false"
         android:id="@+id/calculator1_editText_R"
-        android:maxLength="8"
+        android:maxLength="5"
         android:layout_width="70dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
@@ -91,7 +91,7 @@
         android:focusable="false"
         android:focusableInTouchMode="false"
         android:id="@+id/calculator1_editText_r"
-        android:maxLength="8"
+        android:maxLength="5"
         android:cursorVisible="false"
         android:layout_width="70dp"
         android:layout_height="wrap_content"
@@ -111,7 +111,7 @@
         android:focusable="false"
         android:focusableInTouchMode="false"
         android:id="@+id/calculator1_editText_a"
-        android:maxLength="8"
+        android:maxLength="5"
         android:cursorVisible="false"
         android:layout_width="70dp"
         android:layout_height="wrap_content"
@@ -147,21 +147,16 @@
         android:id="@+id/calculator1_keyboard"
         android:layout_width="match_parent"
         android:layout_height="185dp"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginEnd="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/calculation1_answerTextView">
+        app:layout_constraintStart_toStartOf="parent">
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <TextView
         android:id="@+id/calculation1_answerTextView"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
         android:layout_marginTop="5dp"
         android:layout_marginEnd="5dp"

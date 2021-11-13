@@ -66,8 +66,8 @@ public class Calculation2SolveClass {
         }
 
 
-        if (angle_a + angle_c + angle_b > 180) {
-            throw new Exception("ANGLE SUM CAN NOT BE MORE THAN 180");
+        if (AmountOfKnownAngles == 3 && angle_a + angle_c + angle_b != 180) {
+            throw new Exception("∠α + ∠β + ∠γ ≠ 180°");
         }
 
         if (!side_a.fromNullString && !side_b.fromNullString && !side_c.fromNullString) {
