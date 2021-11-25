@@ -1,5 +1,4 @@
 package com.example.geometricsolver3;
-
 public class AngleFunctions {
     public static SquareNumber getCos(double angle){
         if(angle == 45)
@@ -44,7 +43,7 @@ public class AngleFunctions {
             return new SquareNumber(0.5,3);
 
         else
-            return new SquareNumber(((int)(10000.0 * Math.sin(Math.toRadians(angle)))/10000.0),1);
+            return new SquareNumber((int)(Math.sin(Math.toRadians(angle))),1);
     }
 
     public static double getAngleBySin(SquareNumber sin){
@@ -67,23 +66,23 @@ public class AngleFunctions {
             return Math.toDegrees(Math.asin(sin.toDouble()));
     }
 
-    public static double getAngleByCos(SquareNumber sin){
-        if(sin.getIntNumber() == 0.5 && sin.getSquareNumber() == 1 || (sin.getIntNumber() == 1 && sin.getSquareNumber() == 0.25))
+    public static double getAngleByCos(SquareNumber cos){
+        if(cos.getIntNumber() == 0.5 && cos.getSquareNumber() == 1 || (cos.getIntNumber() == 1 && cos.getSquareNumber() == 0.25))
             return 60;
 
-        else if(sin.getIntNumber() == 0.5 && sin.getSquareNumber() == 3 || (sin.getIntNumber() == 1 && sin.getSquareNumber() == 0.75))
+        else if(cos.getIntNumber() == 0.5 && cos.getSquareNumber() == 3 || (cos.getIntNumber() == 1 && cos.getSquareNumber() == 0.75))
             return 30;
 
-        else if((sin.getIntNumber() == 0.5 && sin.getSquareNumber() == 2) || (sin.getIntNumber() == 1 && sin.getSquareNumber() == 0.5))
+        else if((cos.getIntNumber() == 0.5 && cos.getSquareNumber() == 2) || (cos.getIntNumber() == 1 && cos.getSquareNumber() == 0.5))
             return 45;
 
-        else if(sin.getIntNumber() == 1 && sin.getSquareNumber() == 1)
+        else if(cos.getIntNumber() == 1 && cos.getSquareNumber() == 1)
             return 0;
 
-        else if(sin.getIntNumber() == 0 || sin.getSquareNumber() == 0)
+        else if(cos.getIntNumber() == 0 || cos.getSquareNumber() == 0)
             return 90;
 
         else
-            return Math.toDegrees(Math.asin(sin.toDouble()));
+            return Math.toDegrees(Math.acos(cos.toDouble()));
     }
 }

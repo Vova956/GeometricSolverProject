@@ -1,4 +1,7 @@
 package com.example.geometricsolver3;
+
+import java.text.DecimalFormat;
+
 public class Calculation2SolveClass {
     private SquareNumber side_a;
     private SquareNumber side_b;
@@ -6,6 +9,7 @@ public class Calculation2SolveClass {
     private double angle_a;
     private double angle_b;
     private double angle_c;
+    private final DecimalFormat decimalFormat = new DecimalFormat("#.####");
 
     public Calculation2SolveClass(SquareNumber side_a, SquareNumber side_b, SquareNumber side_c, double angle_a, double angle_b, double angle_c) {
         this.side_a = side_a;
@@ -26,7 +30,8 @@ public class Calculation2SolveClass {
         double rest1 = sum.divide(2);
         SquareNumber rest2 = sum.divide(side1.getMultiply(side2));
 
-        return Math.toDegrees(Math.acos(sum.toDouble() / (rest1 * rest2.toDouble())));
+        return AngleFunctions.getAngleByCos(
+                new SquareNumber(sum.toDouble() / (rest1 * rest2.toDouble()),1));
     }
 
     public SquareRootSum cosTheoremForSide(SquareNumber side1, SquareNumber side2, double angle) {
@@ -108,11 +113,11 @@ public class Calculation2SolveClass {
             if (angle_a == 0 && angle_b != 0 && angle_c != 0) {
                 angle_a = 180 - angle_b - angle_c;
                 stringBuilder.append("∠α = 180° - ∠β - ∠γ = 180° - ");
-                stringBuilder.append(angle_b);
+                stringBuilder.append(decimalFormat.format(angle_b));
                 stringBuilder.append("° - ");
-                stringBuilder.append(angle_c);
+                stringBuilder.append(decimalFormat.format(angle_c));
                 stringBuilder.append("° = ");
-                stringBuilder.append(angle_a);
+                stringBuilder.append(decimalFormat.format(angle_a));
                 stringBuilder.append("°");
 
                 return stringBuilder.toString();
@@ -121,11 +126,11 @@ public class Calculation2SolveClass {
             if (angle_b == 0 && angle_a != 0 && angle_c != 0) {
                 angle_b = 180 - angle_a - angle_c;
                 stringBuilder.append("∠β = 180° - ∠α - ∠γ = 180° - ");
-                stringBuilder.append(angle_a);
+                stringBuilder.append(decimalFormat.format(angle_a));
                 stringBuilder.append("° - ");
-                stringBuilder.append(angle_c);
+                stringBuilder.append(decimalFormat.format(angle_c));
                 stringBuilder.append("° = ");
-                stringBuilder.append(angle_b);
+                stringBuilder.append(decimalFormat.format(angle_b));
                 stringBuilder.append("°");
 
                 return stringBuilder.toString();
@@ -134,11 +139,11 @@ public class Calculation2SolveClass {
             if (angle_c == 0 && angle_a != 0 && angle_b != 0) {
                 angle_c = 180 - angle_a - angle_b;
                 stringBuilder.append("∠γ = 180° - ∠α - ∠β = 180° - ");
-                stringBuilder.append(angle_a);
+                stringBuilder.append(decimalFormat.format(angle_a));
                 stringBuilder.append("° - ");
-                stringBuilder.append(angle_b);
+                stringBuilder.append(decimalFormat.format(angle_b));
                 stringBuilder.append("° = ");
-                stringBuilder.append(angle_c);
+                stringBuilder.append(decimalFormat.format(angle_c));
                 stringBuilder.append("°");
 
                 return stringBuilder.toString();
@@ -149,22 +154,22 @@ public class Calculation2SolveClass {
                 stringBuilder.append("∠γ = arcsin((c * sinα) / a) = arcsin((");
                 stringBuilder.append(side_c);
                 stringBuilder.append(" * sin");
-                stringBuilder.append(angle_a);
+                stringBuilder.append(decimalFormat.format(angle_a));
                 stringBuilder.append("°) /");
                 stringBuilder.append(side_a);
                 stringBuilder.append(") = ");
-                stringBuilder.append(angle_c);
+                stringBuilder.append(decimalFormat.format(angle_c));
                 stringBuilder.append("°\n");
 
                 angle_b = AngleFunctions.getAngleBySin(side_b.getMultiply(AngleFunctions.getSin(angle_a)).getDivide(side_a));
                 stringBuilder.append("∠β = arcsin((b * sinα) / a) = arcsin((");
                 stringBuilder.append(side_b);
                 stringBuilder.append(" * sin");
-                stringBuilder.append(angle_a);
+                stringBuilder.append(decimalFormat.format(angle_a));
                 stringBuilder.append("°) /");
                 stringBuilder.append(side_a);
                 stringBuilder.append(") = ");
-                stringBuilder.append(angle_b);
+                stringBuilder.append(decimalFormat.format(angle_b));
                 stringBuilder.append("°");
 
                 return stringBuilder.toString();
@@ -175,22 +180,22 @@ public class Calculation2SolveClass {
                 stringBuilder.append("∠α = arcsin((a * sinβ) / b) = arcsin((");
                 stringBuilder.append(side_a);
                 stringBuilder.append(" * sin");
-                stringBuilder.append(angle_b);
+                stringBuilder.append(decimalFormat.format(angle_b));
                 stringBuilder.append("°) /");
                 stringBuilder.append(side_b);
                 stringBuilder.append(") = ");
-                stringBuilder.append(angle_a);
+                stringBuilder.append(decimalFormat.format(angle_a));
                 stringBuilder.append("°\n");
 
                 angle_c = AngleFunctions.getAngleBySin(side_c.getMultiply(AngleFunctions.getSin(angle_b)).getDivide(side_b));
                 stringBuilder.append("∠γ = arcsin((c * sinβ) / b) = arcsin((");
                 stringBuilder.append(side_c);
                 stringBuilder.append(" * sin");
-                stringBuilder.append(angle_b);
+                stringBuilder.append(decimalFormat.format(angle_b));
                 stringBuilder.append("°) /");
                 stringBuilder.append(side_b);
                 stringBuilder.append(") = ");
-                stringBuilder.append(angle_c);
+                stringBuilder.append(decimalFormat.format(angle_c));
                 stringBuilder.append("°");
 
                 return stringBuilder.toString();
@@ -201,37 +206,37 @@ public class Calculation2SolveClass {
                 stringBuilder.append("∠α = arcsin((a * sinγ) / c) = arcsin((");
                 stringBuilder.append(side_a);
                 stringBuilder.append(" * sin");
-                stringBuilder.append(angle_c);
+                stringBuilder.append(decimalFormat.format(angle_c));
                 stringBuilder.append("°) /");
                 stringBuilder.append(side_c);
                 stringBuilder.append(") = ");
-                stringBuilder.append(angle_a);
+                stringBuilder.append(decimalFormat.format(angle_a));
                 stringBuilder.append("°\n");
 
                 angle_b = AngleFunctions.getAngleBySin(side_b.getMultiply(AngleFunctions.getSin(angle_c)).getDivide(side_c));
                 stringBuilder.append("∠β = arcsin((b * sinγ) / c) = arcsin((");
                 stringBuilder.append(side_b);
                 stringBuilder.append(" * sin");
-                stringBuilder.append(angle_c);
+                stringBuilder.append(decimalFormat.format(angle_c));
                 stringBuilder.append("°) /");
                 stringBuilder.append(side_c);
                 stringBuilder.append(") = ");
-                stringBuilder.append(angle_b);
+                stringBuilder.append(decimalFormat.format(angle_b));
                 stringBuilder.append("°");
 
                 return stringBuilder.toString();
             } else {
                 solveTriangleByThreeSides();
                 stringBuilder.append("∠α = arccos((b² + c² - a²)/2bc) = ");
-                stringBuilder.append(angle_a);
+                stringBuilder.append(decimalFormat.format(angle_a));
                 stringBuilder.append("°\n");
 
                 stringBuilder.append("∠β = arccos((a² + c² - b²)/2ac) = ");
-                stringBuilder.append(angle_b);
+                stringBuilder.append(decimalFormat.format(angle_b));
                 stringBuilder.append("°\n");
 
                 stringBuilder.append("∠γ = arccos((a² + b² - c²)/2ab) = ");
-                stringBuilder.append(angle_c);
+                stringBuilder.append(decimalFormat.format(angle_c));
                 stringBuilder.append("°");
 
                 return stringBuilder.toString();
@@ -290,11 +295,11 @@ public class Calculation2SolveClass {
                 if (angle_b == 0) {
                     angle_b = 180 - angle_a - angle_c;
                     stringBuilder.append("∠β = 180° - ∠α - ∠γ = 180° - ");
-                    stringBuilder.append(angle_a);
+                    stringBuilder.append(decimalFormat.format(angle_a));
                     stringBuilder.append("° - ");
-                    stringBuilder.append(angle_c);
+                    stringBuilder.append(decimalFormat.format(angle_c));
                     stringBuilder.append("° = ");
-                    stringBuilder.append(angle_b);
+                    stringBuilder.append(decimalFormat.format(angle_b));
                     stringBuilder.append("°\n");
 
                     stringBuilder.append(findOneSideWithThreeAngles());
@@ -304,11 +309,11 @@ public class Calculation2SolveClass {
                 if (angle_a == 0) {
                     angle_a = 180 - angle_b - angle_c;
                     stringBuilder.append("∠α = 180° - ∠β - ∠γ = 180° - ");
-                    stringBuilder.append(angle_b);
+                    stringBuilder.append(decimalFormat.format(angle_b));
                     stringBuilder.append("° - ");
-                    stringBuilder.append(angle_c);
+                    stringBuilder.append(decimalFormat.format(angle_c));
                     stringBuilder.append("° = ");
-                    stringBuilder.append(angle_a);
+                    stringBuilder.append(decimalFormat.format(angle_a));
                     stringBuilder.append("°\n");
 
                     stringBuilder.append(findOneSideWithThreeAngles());
@@ -318,11 +323,11 @@ public class Calculation2SolveClass {
                 if (angle_c == 0) {
                     angle_c = 180 - angle_a - angle_b;
                     stringBuilder.append("∠γ = 180° - ∠α - ∠β = 180° - ");
-                    stringBuilder.append(angle_a);
+                    stringBuilder.append(decimalFormat.format(angle_a));
                     stringBuilder.append("° - ");
-                    stringBuilder.append(angle_b);
+                    stringBuilder.append(decimalFormat.format(angle_b));
                     stringBuilder.append("° = ");
-                    stringBuilder.append(angle_c);
+                    stringBuilder.append(decimalFormat.format(angle_c));
                     stringBuilder.append("°\n");
 
                     stringBuilder.append(findOneSideWithThreeAngles());
@@ -337,20 +342,20 @@ public class Calculation2SolveClass {
                         stringBuilder.append("∠α = arcsin((a * sinβ) / b) = arcsin((");
                         stringBuilder.append(side_a);
                         stringBuilder.append(" * sin");
-                        stringBuilder.append(angle_b);
+                        stringBuilder.append(decimalFormat.format(angle_b));
                         stringBuilder.append("°) /");
                         stringBuilder.append(side_b);
                         stringBuilder.append(") = ");
-                        stringBuilder.append(angle_a);
+                        stringBuilder.append(decimalFormat.format(angle_a));
                         stringBuilder.append("°\n");
 
                         angle_c = 180 - angle_a - angle_b;
                         stringBuilder.append("∠γ = 180° - ∠α - ∠β = 180° - ");
-                        stringBuilder.append(angle_a);
+                        stringBuilder.append(decimalFormat.format(angle_a));
                         stringBuilder.append("° - ");
-                        stringBuilder.append(angle_b);
+                        stringBuilder.append(decimalFormat.format(angle_b));
                         stringBuilder.append("° = ");
-                        stringBuilder.append(angle_c);
+                        stringBuilder.append(decimalFormat.format(angle_c));
                         stringBuilder.append("°\n");
 
                         side_c = side_a.getMultiply(AngleFunctions.getSin(angle_c)).getDivide(AngleFunctions.getSin(angle_a));
@@ -371,20 +376,20 @@ public class Calculation2SolveClass {
                         stringBuilder.append("∠β = arcsin((b * sinα) / a) = arcsin((");
                         stringBuilder.append(side_b);
                         stringBuilder.append(" * sin");
-                        stringBuilder.append(angle_a);
+                        stringBuilder.append(decimalFormat.format(angle_a));
                         stringBuilder.append("°) /");
                         stringBuilder.append(side_a);
                         stringBuilder.append(") = ");
-                        stringBuilder.append(angle_b);
+                        stringBuilder.append(decimalFormat.format(angle_b));
                         stringBuilder.append("°\n");
 
                         angle_c = 180 - angle_a - angle_b;
                         stringBuilder.append("∠γ = 180° - ∠α - ∠β = 180° - ");
-                        stringBuilder.append(angle_a);
+                        stringBuilder.append(decimalFormat.format(angle_a));
                         stringBuilder.append("° - ");
-                        stringBuilder.append(angle_b);
+                        stringBuilder.append(decimalFormat.format(angle_b));
                         stringBuilder.append("° = ");
-                        stringBuilder.append(angle_c);
+                        stringBuilder.append(decimalFormat.format(angle_c));
                         stringBuilder.append("°\n");
 
                         side_c = side_a.getMultiply(AngleFunctions.getSin(angle_c)).getDivide(AngleFunctions.getSin(angle_a));
@@ -410,20 +415,20 @@ public class Calculation2SolveClass {
                         stringBuilder.append("∠β = arcsin((b * sinγ) / c) = arcsin((");
                         stringBuilder.append(side_b);
                         stringBuilder.append(" * sin");
-                        stringBuilder.append(angle_c);
+                        stringBuilder.append(decimalFormat.format(angle_c));
                         stringBuilder.append("°) /");
                         stringBuilder.append(side_c);
                         stringBuilder.append(") = ");
-                        stringBuilder.append(angle_b);
+                        stringBuilder.append(decimalFormat.format(angle_b));
                         stringBuilder.append("°\n");
 
                         angle_a = 180 - angle_b - angle_c;
                         stringBuilder.append("∠α = 180° - ∠β - ∠γ = 180° - ");
-                        stringBuilder.append(angle_b);
+                        stringBuilder.append(decimalFormat.format(angle_b));
                         stringBuilder.append("° - ");
-                        stringBuilder.append(angle_c);
+                        stringBuilder.append(decimalFormat.format(angle_c));
                         stringBuilder.append("° = ");
-                        stringBuilder.append(angle_a);
+                        stringBuilder.append(decimalFormat.format(angle_a));
                         stringBuilder.append("°\n");
 
                         return stringBuilder.toString();
@@ -436,20 +441,20 @@ public class Calculation2SolveClass {
                         stringBuilder.append("∠γ = arcsin((c * sinα) / a) = arcsin((");
                         stringBuilder.append(side_c);
                         stringBuilder.append(" * sin");
-                        stringBuilder.append(angle_a);
+                        stringBuilder.append(decimalFormat.format(angle_a));
                         stringBuilder.append("°) /");
                         stringBuilder.append(side_a);
                         stringBuilder.append(") = ");
-                        stringBuilder.append(angle_c);
+                        stringBuilder.append(decimalFormat.format(angle_c));
                         stringBuilder.append("°\n");
 
                         angle_b = 180 - angle_a - angle_c;
                         stringBuilder.append("∠β = 180° - ∠α - ∠γ = 180° - ");
-                        stringBuilder.append(angle_a);
+                        stringBuilder.append(decimalFormat.format(angle_a));
                         stringBuilder.append("° - ");
-                        stringBuilder.append(angle_c);
+                        stringBuilder.append(decimalFormat.format(angle_c));
                         stringBuilder.append("° = ");
-                        stringBuilder.append(angle_b);
+                        stringBuilder.append(decimalFormat.format(angle_b));
                         stringBuilder.append("°\n");
 
                         side_b = side_a.getMultiply(AngleFunctions.getSin(angle_b)).getDivide(AngleFunctions.getSin(angle_a));
@@ -470,20 +475,20 @@ public class Calculation2SolveClass {
                         stringBuilder.append("∠α = arcsin((a * sinγ) / c) = arcsin((");
                         stringBuilder.append(side_a);
                         stringBuilder.append(" * sin");
-                        stringBuilder.append(angle_c);
+                        stringBuilder.append(decimalFormat.format(angle_c));
                         stringBuilder.append("°) /");
                         stringBuilder.append(side_c);
                         stringBuilder.append(") = ");
-                        stringBuilder.append(angle_a);
+                        stringBuilder.append(decimalFormat.format(angle_a));
                         stringBuilder.append("°\n");
 
                         angle_b = 180 - angle_a - angle_c;
                         stringBuilder.append("∠β = 180° - ∠α - ∠γ = 180° - ");
-                        stringBuilder.append(angle_a);
+                        stringBuilder.append(decimalFormat.format(angle_a));
                         stringBuilder.append("° - ");
-                        stringBuilder.append(angle_c);
+                        stringBuilder.append(decimalFormat.format(angle_c));
                         stringBuilder.append("° = ");
-                        stringBuilder.append(angle_b);
+                        stringBuilder.append(decimalFormat.format(angle_b));
                         stringBuilder.append("°\n");
 
                         side_b = side_a.getMultiply(AngleFunctions.getSin(angle_b)).getDivide(AngleFunctions.getSin(angle_a));
@@ -509,20 +514,20 @@ public class Calculation2SolveClass {
                         stringBuilder.append("∠α = arcsin((a * sinβ) / b) = arcsin((");
                         stringBuilder.append(side_a);
                         stringBuilder.append(" * sin");
-                        stringBuilder.append(angle_b);
+                        stringBuilder.append(decimalFormat.format(angle_b));
                         stringBuilder.append("°) /");
                         stringBuilder.append(side_b);
                         stringBuilder.append(") = ");
-                        stringBuilder.append(angle_a);
+                        stringBuilder.append(decimalFormat.format(angle_a));
                         stringBuilder.append("°\n");
 
                         angle_c = 180 - angle_a - angle_b;
                         stringBuilder.append("∠γ = 180° - ∠α - ∠β = 180° - ");
-                        stringBuilder.append(angle_a);
+                        stringBuilder.append(decimalFormat.format(angle_a));
                         stringBuilder.append("° - ");
-                        stringBuilder.append(angle_b);
+                        stringBuilder.append(decimalFormat.format(angle_b));
                         stringBuilder.append("° = ");
-                        stringBuilder.append(angle_c);
+                        stringBuilder.append(decimalFormat.format(angle_c));
                         stringBuilder.append("°\n");
 
 
@@ -537,20 +542,20 @@ public class Calculation2SolveClass {
                         stringBuilder.append("∠γ = arcsin((c * sinβ) / b) = arcsin((");
                         stringBuilder.append(side_c);
                         stringBuilder.append(" * sin");
-                        stringBuilder.append(angle_b);
+                        stringBuilder.append(decimalFormat.format(angle_b));
                         stringBuilder.append("°) /");
                         stringBuilder.append(side_b);
                         stringBuilder.append(") = ");
-                        stringBuilder.append(angle_c);
+                        stringBuilder.append(decimalFormat.format(angle_c));
                         stringBuilder.append("°\n");
 
                         angle_a = 180 - angle_b - angle_c;
                         stringBuilder.append("∠α = 180° - ∠β - ∠γ = 180° - ");
-                        stringBuilder.append(angle_b);
+                        stringBuilder.append(decimalFormat.format(angle_b));
                         stringBuilder.append("° - ");
-                        stringBuilder.append(angle_c);
+                        stringBuilder.append(decimalFormat.format(angle_c));
                         stringBuilder.append("° = ");
-                        stringBuilder.append(angle_a);
+                        stringBuilder.append(decimalFormat.format(angle_a));
                         stringBuilder.append("°\n");
 
                         side_a = side_b.getMultiply(AngleFunctions.getSin(angle_a)).getDivide(AngleFunctions.getSin(angle_b));
@@ -571,20 +576,20 @@ public class Calculation2SolveClass {
                         stringBuilder.append("∠β = arcsin((b * sinγ) / c) = arcsin((");
                         stringBuilder.append(side_b);
                         stringBuilder.append(" * sin");
-                        stringBuilder.append(angle_c);
+                        stringBuilder.append(decimalFormat.format(angle_c));
                         stringBuilder.append("°) /");
                         stringBuilder.append(side_c);
                         stringBuilder.append(") = ");
-                        stringBuilder.append(angle_b);
+                        stringBuilder.append(decimalFormat.format(angle_b));
                         stringBuilder.append("°\n");
 
                         angle_a = 180 - angle_b - angle_c;
                         stringBuilder.append("∠α = 180° - ∠β - ∠γ = 180° - ");
-                        stringBuilder.append(angle_b);
+                        stringBuilder.append(decimalFormat.format(angle_b));
                         stringBuilder.append("° - ");
-                        stringBuilder.append(angle_c);
+                        stringBuilder.append(decimalFormat.format(angle_c));
                         stringBuilder.append("° = ");
-                        stringBuilder.append(angle_a);
+                        stringBuilder.append(decimalFormat.format(angle_a));
                         stringBuilder.append("°\n");
 
                         side_a = side_b.getMultiply(AngleFunctions.getSin(angle_a)).getDivide(AngleFunctions.getSin(angle_b));
@@ -610,20 +615,20 @@ public class Calculation2SolveClass {
                         stringBuilder.append("∠β = arcsin((b * sinα) / a) = arcsin((");
                         stringBuilder.append(side_b);
                         stringBuilder.append(" * sin");
-                        stringBuilder.append(angle_a);
+                        stringBuilder.append(decimalFormat.format(angle_a));
                         stringBuilder.append("°) /");
                         stringBuilder.append(side_a);
                         stringBuilder.append(") = ");
-                        stringBuilder.append(angle_b);
+                        stringBuilder.append(decimalFormat.format(angle_b));
                         stringBuilder.append("°\n");
 
                         angle_c = 180 - angle_a - angle_b;
                         stringBuilder.append("∠γ = 180° - ∠α - ∠β = 180° - ");
-                        stringBuilder.append(angle_a);
+                        stringBuilder.append(decimalFormat.format(angle_a));
                         stringBuilder.append("° - ");
-                        stringBuilder.append(angle_b);
+                        stringBuilder.append(decimalFormat.format(angle_b));
                         stringBuilder.append("° = ");
-                        stringBuilder.append(angle_c);
+                        stringBuilder.append(decimalFormat.format(angle_c));
                         stringBuilder.append("°\n");
 
 
@@ -644,11 +649,11 @@ public class Calculation2SolveClass {
                 if (angle_b == 0) {
                     angle_b = 180 - angle_a - angle_c;
                     stringBuilder.append("∠β = 180° - ∠α - ∠γ = 180° - ");
-                    stringBuilder.append(angle_a);
+                    stringBuilder.append(decimalFormat.format(angle_a));
                     stringBuilder.append("° - ");
-                    stringBuilder.append(angle_c);
+                    stringBuilder.append(decimalFormat.format(angle_c));
                     stringBuilder.append("° = ");
-                    stringBuilder.append(angle_b);
+                    stringBuilder.append(decimalFormat.format(angle_b));
                     stringBuilder.append("°\n");
 
                     stringBuilder.append(FindAllSidesWithThreeAngles());
@@ -657,11 +662,11 @@ public class Calculation2SolveClass {
                 if (angle_a == 0) {
                     angle_a = 180 - angle_b - angle_c;
                     stringBuilder.append("∠α = 180° - ∠β - ∠γ = 180° - ");
-                    stringBuilder.append(angle_b);
+                    stringBuilder.append(decimalFormat.format(angle_b));
                     stringBuilder.append("° - ");
-                    stringBuilder.append(angle_c);
+                    stringBuilder.append(decimalFormat.format(angle_c));
                     stringBuilder.append("° = ");
-                    stringBuilder.append(angle_a);
+                    stringBuilder.append(decimalFormat.format(angle_a));
                     stringBuilder.append("°\n");
 
                     stringBuilder.append(FindAllSidesWithThreeAngles());
@@ -670,11 +675,11 @@ public class Calculation2SolveClass {
                 if (angle_c == 0) {
                     angle_c = 180 - angle_a - angle_b;
                     stringBuilder.append("∠γ = 180° - ∠α - ∠β = 180° - ");
-                    stringBuilder.append(angle_a);
+                    stringBuilder.append(decimalFormat.format(angle_a));
                     stringBuilder.append("° - ");
-                    stringBuilder.append(angle_b);
+                    stringBuilder.append(decimalFormat.format(angle_b));
                     stringBuilder.append("° = ");
-                    stringBuilder.append(angle_c);
+                    stringBuilder.append(decimalFormat.format(angle_c));
                     stringBuilder.append("°\n");
 
                     stringBuilder.append(FindAllSidesWithThreeAngles());
@@ -684,7 +689,7 @@ public class Calculation2SolveClass {
             }
         }
 
-        throw new Exception("CAN NOT SOLVE TRIANGLE ");
+        throw new GeometryException("CAN NOT SOLVE TRIANGLE ");
     }
 
     private String FindAllSidesWithThreeAngles(){
