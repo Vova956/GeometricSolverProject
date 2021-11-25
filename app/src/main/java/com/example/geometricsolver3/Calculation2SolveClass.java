@@ -26,10 +26,6 @@ public class Calculation2SolveClass {
         double rest1 = sum.divide(2);
         SquareNumber rest2 = sum.divide(side1.getMultiply(side2));
 
-        if (sum.getSize() == 1) {
-            return AngleFunctions.getAngleByCos(sum.get(0).getDivide(rest1).getDivide(rest2));
-        }
-
         return Math.toDegrees(Math.acos(sum.toDouble() / (rest1 * rest2.toDouble())));
     }
 
@@ -59,14 +55,14 @@ public class Calculation2SolveClass {
         int AmountOfKnownAngles = getAmountOfKnownAngles();
 
         if(AmountOfKnownSides == 3){
-            if (side_a.toDouble() + side_b.toDouble() < side_c.toDouble() || side_b.toDouble() + side_c.toDouble() < side_a.toDouble() ||
-                    side_a.toDouble() + side_c.toDouble() < side_b.toDouble()) {
+            if (side_a.toDouble() + side_b.toDouble() <= side_c.toDouble() || side_b.toDouble() + side_c.toDouble() <= side_a.toDouble() ||
+                    side_a.toDouble() + side_c.toDouble() <= side_b.toDouble()) {
                 throw new Exception("TRIANGLE CAN NOT EXIST");
             }
         }
 
 
-        if (AmountOfKnownAngles == 3 && angle_a + angle_c + angle_b != 180) {
+        if (angle_a + angle_c + angle_b > 180) {
             throw new Exception("∠α + ∠β + ∠γ ≠ 180°");
         }
 
@@ -887,4 +883,5 @@ public class Calculation2SolveClass {
     public void setAngle_c(double angle_c) {
         this.angle_c = angle_c;
     }
+
 }
