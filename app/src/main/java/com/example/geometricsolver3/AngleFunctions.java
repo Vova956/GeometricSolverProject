@@ -43,7 +43,7 @@ public class AngleFunctions {
             return new SquareNumber(0.5,3);
 
         else
-            return new SquareNumber((int)(Math.sin(Math.toRadians(angle))),1);
+            return new SquareNumber(Math.sin(Math.toRadians(angle)),1);
     }
 
     public static double getAngleBySin(SquareNumber sin){

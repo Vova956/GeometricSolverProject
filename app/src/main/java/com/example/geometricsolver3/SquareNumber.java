@@ -1,11 +1,13 @@
 package com.example.geometricsolver3;
 
 import java.math.BigDecimal;
+import java.text.DecimalFormat;
 
 public class SquareNumber {
     private double intNumber;
     private double squareNumber;
     public boolean fromNullString = false;
+    private final DecimalFormat decimalFormat = new DecimalFormat("######.####");
 
     private final double[] squares = {
             4, 9,
@@ -75,8 +77,8 @@ public class SquareNumber {
     };
 
     public SquareNumber(){
-        intNumber = 0;
-        squareNumber = 0;
+        intNumber = 1;
+        squareNumber = 1;
     }
 
     public SquareNumber(String str) {
@@ -119,7 +121,7 @@ public class SquareNumber {
 
     public SquareNumber(double intNumber, double squareNumber1) {
         this.intNumber = intNumber;
-        this.squareNumber = ((int)(squareNumber1*10000.0))/10000.0;
+        this.squareNumber = squareNumber1;
 
 
     }
@@ -191,7 +193,7 @@ public class SquareNumber {
         if(d == (int)d)
             stringBuilder.append((int)d);
         else
-            stringBuilder.append(d);
+            stringBuilder.append(decimalFormat.format(d));
     }
 
     @Override
