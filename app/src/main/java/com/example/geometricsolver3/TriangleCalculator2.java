@@ -38,7 +38,11 @@ public class TriangleCalculator2 extends AppCompatActivity {
 
         }
 
-        return OpenBraces == CloseBraces && OpenBraces == squareRoots && (str.charAt(0) != '0');
+        if(squareRoots != 0 && str.charAt(0) == '0'){
+            return false;
+        }
+
+        return OpenBraces == CloseBraces && OpenBraces == squareRoots;
     }
 
     private boolean checkForAngleMistakes(String str) {

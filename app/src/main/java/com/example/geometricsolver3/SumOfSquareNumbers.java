@@ -46,7 +46,7 @@ public class SumOfSquareNumbers {
         for (int i = 0; i < sum.size(); i++) {
             buff += sum.get(i).toDouble();
         }
-        return ((int)(buff*10000.0))/10000.0;
+        return buff;
     }
 
     public boolean canDivide(double a){
