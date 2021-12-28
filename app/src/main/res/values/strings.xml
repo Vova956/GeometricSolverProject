@@ -20,7 +20,7 @@
     <string name="_1_two_angles">1) Two angles</string>
     <string name="a_b_c_nce_ae_be_ncb_eb_ab_nac_ae_ab">a² + b² = c²\nCE² = AE * BE\nCB² = EB*AB\nAC² = AE*AB</string>
     <string name="general_formulas">General formulas</string>
-    <string name="p_a_b_c_2_ns_pr_0_5_h_a_p_p_a_p_b_p_c_n_sin_sin_sin_n_2r_n_a_b_c_na_b_c_2ab_cos">p=(a+b+c)/2\nS = pr = 0.5 * h * a = √(p*(p-a)*(p-b)*(p-c))\n sinα sinβ sinγ\n --- = --- = --- = 2R\n a b c\na² = b² + c² -2ab*cosα</string>
+    <string name="p_a_b_c_2_ns_pr_0_5_h_a_p_p_a_p_b_p_c_n_sin_sin_sin_n_2r_n_a_b_c_na_b_c_2ab_cos">p=(a+b+c)/2\nS = pr = 0.5 * h * a = √(p*(p-a)*(p-b)*(p-c))\nsinα/a = sinβ/b = sinγ/c = 2R \na² = b² + c² -2ab*cosα</string>
     <string name="angles">angles</string>
     <string name="ab_bc_0_5_ac_cosa">AB = BC = 0.5 * AC * cosA</string>
     <string name="r_a_2_3_nr_a_3_nr_2r">r = a/2√3 \nR=a/√3\nR=2r</string>

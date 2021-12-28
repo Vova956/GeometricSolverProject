@@ -518,6 +518,7 @@
             android:id="@+id/about_textView23"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
             android:layout_marginTop="20dp"
             android:fontFamily="@font/montserrat"
             android:text="@string/p_a_b_c_2_ns_pr_0_5_h_a_p_p_a_p_b_p_c_n_sin_sin_sin_n_2r_n_a_b_c_na_b_c_2ab_cos"

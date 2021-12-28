@@ -29,6 +29,12 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
+        ImageButton imageButton3 = findViewById(R.id.main_imageButton3);
+        imageButton3.setOnClickListener(evt ->{
+            Intent intent = new Intent(this,TriangleCalculator3.class);
+            startActivity(intent);
+        });
+
 
 
     }
