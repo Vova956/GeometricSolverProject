@@ -56,15 +56,15 @@
 
                 <ImageButton
                     android:id="@+id/main_imageButton3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="130dp"
+                    android:layout_height="130dp"
                     android:layout_marginStart="10dp"
                     android:background="@drawable/buttton_style"
                     android:contentDescription="@string/triangle"
                     app:layout_constraintBottom_toBottomOf="@+id/main_imageButton2"
                     app:layout_constraintStart_toEndOf="@+id/main_imageButton2"
                     app:layout_constraintTop_toTopOf="@+id/main_imageButton2"
-                    app:srcCompat="@drawable/button_right_triangle"
+                    app:srcCompat="@drawable/button_similar_triangles"
                     tools:ignore="DuplicateSpeakableTextCheck,ImageContrastCheck" />
 
                 <ImageButton

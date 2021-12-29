@@ -63,4 +63,8 @@
     <string name="beta">β =</string>
     <string name="gamma">γ =</string>
     <string name="alpha">α =</string>
+    <string name="a1">a1 =</string>
+    <string name="b1">b1 =</string>
+    <string name="c1">c1 =</string>
+    <string name="k">k =</string>
 </resources>
