@@ -1,6 +1,7 @@
 package com.example.geometricsolver3;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.MotionEvent;
@@ -49,7 +50,7 @@ public class TriangleCalculator1 extends AppCompatActivity {
                 public boolean onTouch(View v, MotionEvent event) {
                     if (!isKeyboard) {
                         transaction = fragmentManager.beginTransaction();
-                        transaction.add(R.id.calculation3_keyboard, keyboard);
+                        transaction.add(R.id.calculator1_keyboard, keyboard);
                         transaction.commit();
                         isKeyboard = true;
                     }
@@ -62,7 +63,6 @@ public class TriangleCalculator1 extends AppCompatActivity {
 
         Button solveButton = findViewById(R.id.calculator1_solutionButton);
         TextView answer = findViewById(R.id.calculation1_answerTextView);
-        //answer.setMovementMethod(new ScrollingMovementMethod());
 
 
         solveButton.setOnClickListener(evt -> {
@@ -91,6 +91,12 @@ public class TriangleCalculator1 extends AppCompatActivity {
                 answer.setText(e.getMessage());
             }
 
+        });
+
+        Button theoremButton = findViewById(R.id.calculator1_theoremButton);
+        theoremButton.setOnClickListener(evt->{
+            Intent intent = new Intent(this,AboutActivity.class);
+            startActivity(intent);
         });
 
 
