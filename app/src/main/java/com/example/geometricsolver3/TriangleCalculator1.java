@@ -18,38 +18,6 @@ public class TriangleCalculator1 extends AppCompatActivity {
     private FragmentTransaction transaction;
     private boolean isKeyboard = false;
 
-    private boolean checkForMistakes(String str) {
-        int OpenBraces = 0;
-        int CloseBraces = 0;
-        int squareRoots = 0;
-
-        if (str.length() == 0)
-            return true;
-
-        for (int i = 0; i < str.length(); i++) {
-            if (str.charAt(i) == '(')
-                OpenBraces++;
-
-            else if (str.charAt(i) == ')')
-                CloseBraces++;
-
-            else if (str.charAt(i) == '√')
-                squareRoots++;
-
-        }
-
-        if(squareRoots != 0 && str.charAt(0) == '0')
-            return false;
-
-        return OpenBraces == CloseBraces && OpenBraces == squareRoots;
-    }
-
-    private String getStringResourceByName(String aString) {
-        String packageName = getPackageName();
-        int resId = getResources().getIdentifier(aString, "string", packageName);
-        return getString(resId);
-    }
-
     @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,51 +41,24 @@ public class TriangleCalculator1 extends AppCompatActivity {
         keyboard.setTextsViews(textViews);
         fragmentManager = getSupportFragmentManager();
 
-        editText_R.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                if (!isKeyboard) {
-                    transaction = fragmentManager.beginTransaction();
-                    transaction.add(R.id.calculator1_keyboard, keyboard);
-                    transaction.commit();
-                    isKeyboard = true;
+        for (int i = 0; i < textViews.length; i++) {
+            textViews[i].setShowSoftInputOnFocus(false);
+            int finalI = i;
+            textViews[i].setOnTouchListener(new View.OnTouchListener() {
+                @Override
+                public boolean onTouch(View v, MotionEvent event) {
+                    if (!isKeyboard) {
+                        transaction = fragmentManager.beginTransaction();
+                        transaction.add(R.id.calculation3_keyboard, keyboard);
+                        transaction.commit();
+                        isKeyboard = true;
+                    }
+                    keyboard.setTextViewIndex(finalI);
+                    return false;
                 }
-                keyboard.setTextViewIndex(0);
-                return false;
-            }
+            });
+        }
 
-        });
-
-
-        editText_r.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                if (!isKeyboard) {
-                    transaction = fragmentManager.beginTransaction();
-                    transaction.add(R.id.calculator1_keyboard, keyboard);
-                    transaction.commit();
-                    isKeyboard = true;
-                }
-                keyboard.setTextViewIndex(1);
-                return false;
-            }
-
-        });
-
-        editText_a.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                if (!isKeyboard) {
-                    transaction = fragmentManager.beginTransaction();
-                    transaction.add(R.id.calculator1_keyboard, keyboard);
-                    transaction.commit();
-                    isKeyboard = true;
-                }
-                keyboard.setTextViewIndex(2);
-                return false;
-            }
-
-        });
 
         Button solveButton = findViewById(R.id.calculator1_solutionButton);
         TextView answer = findViewById(R.id.calculation1_answerTextView);
@@ -126,7 +67,7 @@ public class TriangleCalculator1 extends AppCompatActivity {
 
         solveButton.setOnClickListener(evt -> {
             try {
-                if (!checkForMistakes(editText_R.getText().toString()) || !checkForMistakes(editText_r.getText().toString()) || !checkForMistakes(editText_a.getText().toString())) {
+                if (!MistakeChecker.checkForMistakes(editText_R.getText().toString()) || !MistakeChecker.checkForMistakes(editText_r.getText().toString()) || !MistakeChecker.checkForMistakes(editText_a.getText().toString())) {
                     throw new Exception("INCORRECT INPUT");
                 }
 
