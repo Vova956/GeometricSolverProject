@@ -7,10 +7,15 @@ import androidx.fragment.app.FragmentTransaction;
 import android.annotation.SuppressLint;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 
 public class TriangleCalculator2 extends AppCompatActivity {
     private FragmentManager fragmentManager;
@@ -61,6 +66,8 @@ public class TriangleCalculator2 extends AppCompatActivity {
         TextView answer = findViewById(R.id.calculation2_answerTextView);
 
         solveButton.setOnClickListener(evt->{
+            answer.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+            answer.setText("...");
             try {
                 for (int i = 0; i < 3; i++) {
                     if (!MistakeChecker.checkForMistakes(textViews[i].getText().toString())) {

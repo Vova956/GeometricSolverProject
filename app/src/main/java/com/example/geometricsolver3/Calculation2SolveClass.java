@@ -1,8 +1,9 @@
 package com.example.geometricsolver3;
 
 import java.text.DecimalFormat;
+import java.util.concurrent.Callable;
 
-public class Calculation2SolveClass {
+public class Calculation2SolveClass{
     private SquareNumber side_a;
     private SquareNumber side_b;
     private SquareNumber side_c;
