@@ -299,4 +299,8 @@ public class SquareNumber {
         this.intNumber*=-1;
         return this;
     }
+
+    public double getRoot(){
+        return Math.sqrt(toDouble());
+    }
 }
