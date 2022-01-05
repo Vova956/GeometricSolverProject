@@ -70,4 +70,8 @@
     <string name="theorems">Theorems</string>
     <string name="parallelograms">Parallelograms</string>
     <string name="square">Square</string>
+    <string name="d">d =</string>
+    <string name="p">P =</string>
+    <string name="s">S =</string>
+
 </resources>

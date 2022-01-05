@@ -10,10 +10,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.GeometricSolver3">
         <activity
-            android:name=".TriangleCalculator3"
+            android:name=".ParallelogramCalculator1"
             android:parentActivityName=".MainActivity"
             android:windowSoftInputMode="stateHidden"
             android:exported="false" />
+        <activity
+            android:name=".TriangleCalculator3"
+            android:exported="false"
+            android:parentActivityName=".MainActivity"
+            android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".TriangleCalculator2"
             android:exported="false"

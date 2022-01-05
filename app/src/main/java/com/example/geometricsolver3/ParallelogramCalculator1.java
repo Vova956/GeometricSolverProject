@@ -1,7 +1,10 @@
 package com.example.geometricsolver3;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+
 import android.annotation.SuppressLint;
-import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.MotionEvent;
@@ -9,31 +12,29 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
+public class ParallelogramCalculator1 extends AppCompatActivity {
 
-public class TriangleCalculator1 extends AppCompatActivity {
     private Keyboard keyboard;
     private FragmentManager fragmentManager;
     private FragmentTransaction transaction;
     private boolean isKeyboard = false;
 
-    @SuppressLint("ClickableViewAccessibility")
     @Override
+    @SuppressLint("ClickableViewAccessibility")
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_triangle_calculator1);
+        setContentView(R.layout.activity_parallelogram_calculator1);
 
-        setTitle("Equalateral triangle");
+        setTitle("Square");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        TextView editText_R = this.findViewById(R.id.calculator1_editText_R);
-        TextView editText_r = this.findViewById(R.id.calculator1_editText_r);
-        TextView editText_a = this.findViewById(R.id.calculator1_editText_a);
+        TextView editText_a = this.findViewById(R.id.parallegram_calculator1_editTextA);
+        TextView editText_d = this.findViewById(R.id.parallegram_calculator1_editTextD);
+        TextView editText_P = this.findViewById(R.id.parallegram_calculator1_editTextP);
+        TextView editText_S = this.findViewById(R.id.parallegram_calculator1_editTextS);
 
         keyboard = new Keyboard();
-        TextView[] textViews = {editText_R, editText_r, editText_a};
+        TextView[] textViews = {editText_a, editText_d, editText_P,editText_S};
         keyboard.setTextsViews(textViews);
         fragmentManager = getSupportFragmentManager();
 
@@ -55,22 +56,23 @@ public class TriangleCalculator1 extends AppCompatActivity {
             });
         }
 
+        Button solveButton = findViewById(R.id.parallegram_calculator1_solutionButton);
+        TextView answer = findViewById(R.id.parallegram_calculator1_answerText);
 
-        Button solveButton = findViewById(R.id.calculator1_solutionButton);
-        TextView answer = findViewById(R.id.calculation1_answerTextView);
-
-
-        solveButton.setOnClickListener(evt -> {
+        solveButton.setOnClickListener(evt ->{
             try {
-                if (!MistakeChecker.checkForMistakes(editText_R.getText().toString()) || !MistakeChecker.checkForMistakes(editText_r.getText().toString()) || !MistakeChecker.checkForMistakes(editText_a.getText().toString())) {
-                    throw new Exception("INCORRECT INPUT");
+                for (int i = 0; i < textViews.length; i++) {
+                    if (!MistakeChecker.checkForMistakes(textViews[i].getText().toString())) {
+                        throw new Exception("INVALID INPUT");
+                    }
                 }
 
-                SquareNumber R = new SquareNumber(editText_R.getText().toString());
-                SquareNumber r = new SquareNumber(editText_r.getText().toString());
-                SquareNumber a = new SquareNumber(editText_a.getText().toString());
+                SquareNumber a = new SquareNumber(editText_a.toString());
+                SquareNumber d = new SquareNumber(editText_a.toString());
+                SquareNumber P = new SquareNumber(editText_a.toString());
+                SquareNumber S = new SquareNumber(editText_a.toString());
 
-                Calculation1SolveClass solution = new Calculation1SolveClass(R, r, a);
+                Calculation4SolveClass solution = new Calculation4SolveClass(P, S, a, d);
 
                 String solutionString = solution.solve();
 
@@ -79,20 +81,14 @@ public class TriangleCalculator1 extends AppCompatActivity {
                 answer.setTextAlignment(View.TEXT_ALIGNMENT_TEXT_START);
                 answer.setText(solutionString);
 
-
-            } catch (Exception e) {
+            }catch(Exception e){
                 answer.setTextColor(Color.RED);
                 answer.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
                 answer.setText(e.getMessage());
             }
-
         });
 
-        Button theoremButton = findViewById(R.id.calculator1_theoremButton);
-        theoremButton.setOnClickListener(evt->{
-            Intent intent = new Intent(this,AboutActivity.class);
-            startActivity(intent);
-        });
+
 
 
     }

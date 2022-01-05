@@ -36,6 +36,12 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
+        ImageButton imageButton4 = findViewById(R.id.main_imageButton4);
+        imageButton4.setOnClickListener(evt ->{
+            Intent intent = new Intent(this,ParallelogramCalculator1.class);
+            startActivity(intent);
+        });
+
 
 
     }
