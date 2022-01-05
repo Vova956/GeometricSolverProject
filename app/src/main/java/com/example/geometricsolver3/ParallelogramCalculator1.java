@@ -7,6 +7,7 @@ import androidx.fragment.app.FragmentTransaction;
 import android.annotation.SuppressLint;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
@@ -46,7 +47,7 @@ public class ParallelogramCalculator1 extends AppCompatActivity {
                 public boolean onTouch(View v, MotionEvent event) {
                     if (!isKeyboard) {
                         transaction = fragmentManager.beginTransaction();
-                        transaction.add(R.id.calculator1_keyboard, keyboard);
+                        transaction.add(R.id.parallegram_calculator1_keyboard, keyboard);
                         transaction.commit();
                         isKeyboard = true;
                     }
@@ -67,10 +68,10 @@ public class ParallelogramCalculator1 extends AppCompatActivity {
                     }
                 }
 
-                SquareNumber a = new SquareNumber(editText_a.toString());
-                SquareNumber d = new SquareNumber(editText_a.toString());
-                SquareNumber P = new SquareNumber(editText_a.toString());
-                SquareNumber S = new SquareNumber(editText_a.toString());
+                SquareNumber a = new SquareNumber(editText_a.getText().toString());
+                SquareNumber d = new SquareNumber(editText_d.getText().toString());
+                SquareNumber P = new SquareNumber(editText_P.getText().toString());
+                SquareNumber S = new SquareNumber(editText_S.getText().toString());
 
                 Calculation4SolveClass solution = new Calculation4SolveClass(P, S, a, d);
 
@@ -85,6 +86,7 @@ public class ParallelogramCalculator1 extends AppCompatActivity {
                 answer.setTextColor(Color.RED);
                 answer.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
                 answer.setText(e.getMessage());
+                Log.d("Error",e.getMessage());
             }
         });
 
