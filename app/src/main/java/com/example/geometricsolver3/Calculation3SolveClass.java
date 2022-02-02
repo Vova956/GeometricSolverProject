@@ -1,6 +1,6 @@
 package com.example.geometricsolver3;
 
-public class Calculation3SolveClass {
+public class Calculation3SolveClass  implements ISolver{
     private SquareNumber a;
     private SquareNumber b;
     private SquareNumber c;
@@ -19,31 +19,31 @@ public class Calculation3SolveClass {
         this.k = k;
     }
 
-    public String solve() throws Exception{
+    public String solve() throws GeometryException{
         StringBuilder stringBuilder = new StringBuilder();
 
         if(!canSolve()){
-            throw new Exception("CANNOT SOLVE");
+            throw new GeometryException("CANNOT SOLVE");
         }
 
         if(!checkTriangles()){
-            throw  new Exception("TRIANGLES CANNOT EXIST");
+            throw  new GeometryException("TRIANGLES CANNOT EXIST");
         }
 
         if(!k.fromNullString){
             if(!a1.fromNullString && !a.fromNullString){
                 if(a.toDouble() != k.getMultiply(a1).toDouble())
-                    throw new Exception("k ≠ a / a1");
+                    throw new GeometryException("k ≠ a / a1");
             }
 
             if(!b1.fromNullString && !b.fromNullString){
                 if(b.toDouble() != k.getMultiply(b1).toDouble())
-                    throw new Exception("k ≠ b / b1");
+                    throw new GeometryException("k ≠ b / b1");
             }
 
             if(!c1.fromNullString && !c.fromNullString) {
                 if (c.toDouble() != k.getMultiply(c1).toDouble())
-                    throw new Exception("k ≠ c / c1");
+                    throw new GeometryException("k ≠ c / c1");
             }
         }
 
@@ -61,12 +61,12 @@ public class Calculation3SolveClass {
 
             if(!b.fromNullString && !b1.fromNullString){
                 if(a.getMultiply(b1).toDouble() != b.getMultiply(a1).toDouble())
-                    throw new Exception("a / a1 ≠ b / b1");
+                    throw new GeometryException("a / a1 ≠ b / b1");
             }
 
             if(!c.fromNullString && !c1.fromNullString){
                 if(a.getMultiply(c1).toDouble() != c.getMultiply(a1).toDouble())
-                    throw new Exception("a / a1 ≠ c / c1");
+                    throw new GeometryException("a / a1 ≠ c / c1");
             }
 
             if(b1.fromNullString){
@@ -130,7 +130,7 @@ public class Calculation3SolveClass {
 
             if(!c.fromNullString && !c1.fromNullString){
                 if(b.getMultiply(c1).toDouble() != b1.getMultiply(c).toDouble()){
-                    throw new Exception("b / b1 ≠ c / c1");
+                    throw new GeometryException("b / b1 ≠ c / c1");
                 }
             }
 

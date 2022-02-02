@@ -1,5 +1,5 @@
 package com.example.geometricsolver3;
-public class Calculation4SolveClass {
+public class Calculation4SolveClass  implements ISolver{
     private SquareNumber P;
     private SquareNumber S;
     private SquareNumber a;
@@ -12,28 +12,28 @@ public class Calculation4SolveClass {
         this.d = d;
     }
 
-    public String solve() throws Exception{
+    public String solve() throws GeometryException{
         StringBuilder stringBuilder = new StringBuilder();
         SquareNumber two = new SquareNumber(1,2);
 
         if(!a.fromNullString ){
             if(!P.fromNullString && a.toDouble() != P.getDivide(4).toDouble())
-                throw new Exception("a ≠ P/4");
+                throw new GeometryException("a ≠ P/4");
             if(!S.fromNullString && S.getRoot() != a.toDouble())
-                throw new Exception("a ≠ √S ");
+                throw new GeometryException("a ≠ √S ");
             if(!d.fromNullString && a.toDouble() != d.getDivide(two).toDouble())
-                throw new Exception("a√2 ≠ d");
+                throw new GeometryException("a√2 ≠ d");
         }
 
         if(!S.fromNullString){
             if(!P.fromNullString && P.getDivide(4).toDouble() != S.getRoot())
-                throw new Exception("√S ≠ P/4");
+                throw new GeometryException("√S ≠ P/4");
             if(!d.fromNullString && d.getDivide(two).toDouble() != S.getRoot())
-                throw new Exception("√S ≠ d/√2");
+                throw new GeometryException("√S ≠ d/√2");
         }
 
         if(!P.fromNullString && !d.fromNullString && P.getDivide(4).toDouble() != d.getDivide(two).toDouble())
-            throw new Exception("P/4 ≠ d/√2");
+            throw new GeometryException("P/4 ≠ d/√2");
 
         if(!a.fromNullString){
             if(d.fromNullString) {
@@ -154,6 +154,6 @@ public class Calculation4SolveClass {
             return stringBuilder.toString();
         }
 
-        throw new Exception("CANNOT SOLVE");
+        throw new GeometryException("CANNOT SOLVE");
     }
 }

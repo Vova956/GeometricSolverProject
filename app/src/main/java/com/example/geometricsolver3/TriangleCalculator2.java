@@ -17,7 +17,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
-public class TriangleCalculator2 extends AppCompatActivity {
+public class TriangleCalculator2 extends AppCompatActivity{
     private FragmentManager fragmentManager;
     private FragmentTransaction transaction;
     private Keyboard keyboard;
@@ -68,6 +68,30 @@ public class TriangleCalculator2 extends AppCompatActivity {
         solveButton.setOnClickListener(evt->{
             answer.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
             answer.setText("...");
+
+            /*InCLASS;
+            class CalculatorThread extends Thread{
+                IPostAction action;
+
+                void setExitStrategy(IPostAction action){
+                    this.action = action;
+                }
+
+                @Override
+                public void run(){
+                    // calculations
+                    action.perform();
+                }
+            }
+
+
+            CalculatorThread thread = new CalcThread(values....);
+            thread.setExitStategy(()->{
+                answer.setText(thread.getResult());
+            });
+            thread.start();
+            */
+
             try {
                 for (int i = 0; i < 3; i++) {
                     if (!MistakeChecker.checkForMistakes(textViews[i].getText().toString())) {
@@ -106,13 +130,20 @@ public class TriangleCalculator2 extends AppCompatActivity {
                     angle_c = 0;
                 }
 
-
                 Calculation2SolveClass calculator = new Calculation2SolveClass(a,b,c,angle_a,angle_b,angle_c);
-                String str = calculator.solve();
-
-                answer.setTextColor(Color.BLACK);
-                answer.setTextAlignment(View.TEXT_ALIGNMENT_TEXT_START);
-                answer.setText(str);
+                CalculatorThread thread = new CalculatorThread(calculator);
+                thread.setExitStrategy(() ->{
+                    try {
+                        answer.setTextColor(Color.BLACK);
+                        answer.setTextAlignment(View.TEXT_ALIGNMENT_TEXT_START);
+                        answer.setText(thread.getResult());
+                    } catch (GeometryException e) {
+                        answer.setTextColor(Color.RED);
+                        answer.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+                        answer.setText(e.getMessage());
+                    }
+                });
+                thread.start();
 
             }catch (Exception e){
                 answer.setTextColor(Color.RED);

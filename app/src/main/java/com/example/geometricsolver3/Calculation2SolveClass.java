@@ -3,7 +3,7 @@ package com.example.geometricsolver3;
 import java.text.DecimalFormat;
 import java.util.concurrent.Callable;
 
-public class Calculation2SolveClass{
+public class Calculation2SolveClass  implements ISolver{
     private SquareNumber side_a;
     private SquareNumber side_b;
     private SquareNumber side_c;
@@ -55,7 +55,7 @@ public class Calculation2SolveClass{
         angle_c = cosTheoremForAngle(side_c, side_b, side_a);
     }
 
-    public String solve() throws Exception {
+    public String solve() throws GeometryException {
         StringBuilder stringBuilder = new StringBuilder();
         int AmountOfKnownSides = getAmountOfKnownSides();
         int AmountOfKnownAngles = getAmountOfKnownAngles();
@@ -63,46 +63,46 @@ public class Calculation2SolveClass{
         if(AmountOfKnownSides == 3){
             if (side_a.toDouble() + side_b.toDouble() <= side_c.toDouble() || side_b.toDouble() + side_c.toDouble() <= side_a.toDouble() ||
                     side_a.toDouble() + side_c.toDouble() <= side_b.toDouble()) {
-                throw new Exception("TRIANGLE CAN NOT EXIST");
+                throw new GeometryException("TRIANGLE CAN NOT EXIST");
             }
         }
 
 
         if (angle_a + angle_c + angle_b > 180) {
-            throw new Exception("∠α + ∠β + ∠γ ≠ 180°");
+            throw new GeometryException("∠α + ∠β + ∠γ ≠ 180°");
         }
 
         if (!side_a.fromNullString && !side_b.fromNullString && !side_c.fromNullString) {
             if (angle_a != 0) {
                 if (cosTheoremForAngle(side_a, side_b, side_c) != angle_a)
-                    throw new Exception("a² ≠ b² + c² -2bc * cosα");
+                    throw new GeometryException("a² ≠ b² + c² -2bc * cosα");
             }
 
             if (angle_b != 0) {
                 if (cosTheoremForAngle(side_b, side_a, side_c) != angle_b)
-                    throw new Exception("b² ≠ a² + c² -2ac * cosβ");
+                    throw new GeometryException("b² ≠ a² + c² -2ac * cosβ");
             }
 
             if (angle_c != 0) {
                 if (cosTheoremForAngle(side_c, side_b, side_a) != angle_c)
-                    throw new Exception("c² ≠ a² + b² -2ab * cosγ");
+                    throw new GeometryException("c² ≠ a² + b² -2ab * cosγ");
             }
         }
 
         if (!side_a.fromNullString && angle_a != 0) {
             if (!side_b.fromNullString && angle_b != 0) {
                 if (!side_b.getMultiply(AngleFunctions.getSin(angle_a)).equals(side_a.getMultiply(AngleFunctions.getSin(angle_b))))
-                    throw new Exception("a * sinβ ≠ b * sinα");
+                    throw new GeometryException("a * sinβ ≠ b * sinα");
             }
             if (!side_c.fromNullString && angle_c != 0) {
                 if (!side_c.getMultiply(AngleFunctions.getSin(angle_a)).equals(side_a.getMultiply(AngleFunctions.getSin(angle_c))))
-                    throw new Exception("c * sinα ≠ a * sinγ");
+                    throw new GeometryException("c * sinα ≠ a * sinγ");
             }
         }
 
         if (!side_c.fromNullString && angle_c != 0 && !side_b.fromNullString && angle_b != 0) {
             if (!side_c.getMultiply(AngleFunctions.getSin(angle_b)).equals(side_b.getMultiply(AngleFunctions.getSin(angle_c))))
-                throw new Exception("c * sinβ ≠ b * sinγ");
+                throw new GeometryException("c * sinβ ≠ b * sinγ");
         }
 
         if (!side_b.fromNullString && !side_a.fromNullString && !side_c.fromNullString && angle_a != 0 && angle_b != 0 && angle_c != 0) {

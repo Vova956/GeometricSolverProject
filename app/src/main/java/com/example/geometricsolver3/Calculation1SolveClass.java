@@ -1,6 +1,6 @@
 package com.example.geometricsolver3;
 
-public class Calculation1SolveClass {
+public class Calculation1SolveClass implements ISolver{
     private SquareNumber R;
     private SquareNumber r;
     private SquareNumber a;
@@ -11,6 +11,7 @@ public class Calculation1SolveClass {
         this.a = a;
     }
 
+    @Override
     public String solve() throws GeometryException {
 
         SquareNumber squareNumber3 = new SquareNumber("√(3)");
