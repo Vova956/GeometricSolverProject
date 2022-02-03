@@ -22,11 +22,13 @@ public class CalculatorThread extends Thread{
         } catch (GeometryException e) {
             this.e = e;
         }
-        action.perform();
+
+        if(action != null)
+            action.perform();
     }
 
     public String getResult()throws GeometryException{
-        if(e != null)
+        if(e == null)
             return result;
         throw e;
     }

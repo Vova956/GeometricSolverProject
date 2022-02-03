@@ -62,14 +62,15 @@ public class TriangleCalculator3 extends AppCompatActivity {
         }
 
         solveButton.setOnClickListener(evt->{
+            answer.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+            answer.setTextColor(Color.BLACK);
+            answer.setText("...");
             try {
                 for (int i = 0; i < textViews.length; i++) {
                     if (!MistakeChecker.checkForMistakes(textViews[i].toString())) {
                         throw new Exception("INVALID INPUT");
                     }
                 }
-
-
 
                 SquareNumber a = new SquareNumber(editText1.getText().toString());
                 SquareNumber b = new SquareNumber(editText2.getText().toString());
@@ -79,17 +80,23 @@ public class TriangleCalculator3 extends AppCompatActivity {
                 SquareNumber c1 = new SquareNumber(editText6.getText().toString());
                 SquareNumber k = new SquareNumber(editText7.getText().toString());
 
-
-
                 Calculation3SolveClass calculator = new Calculation3SolveClass(a,b,c,a1,b1,c1,k);
-                String str = calculator.solve();
+                CalculatorThread thread = new CalculatorThread(calculator);
+                thread.setExitStrategy(() ->{
+                    runOnUiThread(()->{
+                        try{
+                            answer.setTextColor(Color.BLACK);
+                            answer.setTextAlignment(View.TEXT_ALIGNMENT_TEXT_START);
+                            answer.setText(thread.getResult());
+                        }catch (Exception e){
+                            answer.setTextColor(Color.RED);
+                            answer.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+                            answer.setText(e.getMessage());
+                        }
 
-
-
-                answer.setTextColor(Color.BLACK);
-                answer.setTextAlignment(View.TEXT_ALIGNMENT_TEXT_START);
-                answer.setText(str);
-
+                    });
+                });
+                thread.start();
             }catch (Exception e){
                answer.setTextColor(Color.RED);
                answer.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);

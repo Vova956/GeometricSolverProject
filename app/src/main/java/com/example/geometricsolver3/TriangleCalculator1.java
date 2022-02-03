@@ -61,6 +61,10 @@ public class TriangleCalculator1 extends AppCompatActivity {
 
 
         solveButton.setOnClickListener(evt -> {
+            answer.setTextColor(Color.BLACK);
+            answer.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+            answer.setText("...");
+
             try {
                 if (!MistakeChecker.checkForMistakes(editText_R.getText().toString()) || !MistakeChecker.checkForMistakes(editText_r.getText().toString()) || !MistakeChecker.checkForMistakes(editText_a.getText().toString())) {
                     throw new Exception("INCORRECT INPUT");
@@ -70,14 +74,24 @@ public class TriangleCalculator1 extends AppCompatActivity {
                 SquareNumber r = new SquareNumber(editText_r.getText().toString());
                 SquareNumber a = new SquareNumber(editText_a.getText().toString());
 
-                Calculation1SolveClass solution = new Calculation1SolveClass(R, r, a);
+                Calculation1SolveClass calculator = new Calculation1SolveClass(R, r, a);
+                CalculatorThread thread = new CalculatorThread(calculator);
 
-                String solutionString = solution.solve();
+                thread.setExitStrategy(() ->{
+                    runOnUiThread(()->{
+                        try{
+                            answer.setTextColor(Color.BLACK);
+                            answer.setTextAlignment(View.TEXT_ALIGNMENT_TEXT_START);
+                            answer.setText(thread.getResult());
+                        }catch (Exception e){
+                            answer.setTextColor(Color.RED);
+                            answer.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+                            answer.setText(e.getMessage());
+                        }
 
-
-                answer.setTextColor(Color.BLACK);
-                answer.setTextAlignment(View.TEXT_ALIGNMENT_TEXT_START);
-                answer.setText(solutionString);
+                    });
+                });
+                thread.start();
 
 
             } catch (Exception e) {
