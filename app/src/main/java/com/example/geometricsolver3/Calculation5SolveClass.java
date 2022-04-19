@@ -1,6 +1,6 @@
 package com.example.geometricsolver3;
 
-public class Calculation5SolveClass {
+public class Calculation5SolveClass implements ISolver{
     private SquareNumber a;
     private SquareNumber r;
     private SquareNumber R;
@@ -15,39 +15,39 @@ public class Calculation5SolveClass {
         this.angle = angle;
     }
 
-    public String solve() throws Exception{
+    public String solve() throws GeometryException{
         StringBuilder builder = new StringBuilder();
 
         if(angle != 0 && n != 0) {
             if (angle != 180 * (n - 2.0) / n)
-                throw new Exception("α ≠ 180*(n-2)/n");
+                throw new GeometryException("α ≠ 180*(n-2)/n");
         }
 
         if(!R.fromNullString && !a.fromNullString && n != 0){
             if(R.getMultiply(AngleFunctions.getSin(180.0/n)).toDouble() != a.getDivide(2).toDouble())
-                throw new Exception("R * sin(180/n) ≠ a/2");
+                throw new GeometryException("R * sin(180/n) ≠ a/2");
         }
 
         if(!r.fromNullString && !a.fromNullString && n != 0){
             if(r.getMultiply(AngleFunctions.getTg(180.0/n)).toDouble() != a.getDivide(2).toDouble())
-                throw new Exception("r * tg(180/n) ≠ a/2");
+                throw new GeometryException("r * tg(180/n) ≠ a/2");
         }
 
         if(angle != 0){
             if(angle < 0 || angle > 180)
-                throw new Exception("α ∉ (0;180)");
+                throw new GeometryException("α ∉ (0;180)");
 
             double buff = 360/(180-angle);
             if(buff != (int)buff)
-                throw new Exception("n ∉ ℤ");
+                throw new GeometryException("n ∉ ℤ");
 
             if(!R.fromNullString && !a.fromNullString){
                 if(R.getMultiply(AngleFunctions.getSin(180/buff)).toDouble() != a.getDivide(2).toDouble())
-                    throw new Exception("R * sin(180/n) ≠ a/2");
+                    throw new GeometryException("R * sin(180/n) ≠ a/2");
             }
 
             if(r.getMultiply(AngleFunctions.getTg(180/buff)).toDouble() != a.getDivide(2).toDouble())
-                throw new Exception("r * tg(180/n) ≠ a/2");
+                throw new GeometryException("r * tg(180/n) ≠ a/2");
 
         }
 
@@ -223,7 +223,7 @@ public class Calculation5SolveClass {
             return builder.toString();
         }
 
-        throw new Exception("CANNOT SOLVE");
+        throw new GeometryException("CANNOT SOLVE");
     }
 
 }

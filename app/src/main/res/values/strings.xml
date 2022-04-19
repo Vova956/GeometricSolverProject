@@ -3,7 +3,7 @@
     <string name="app_name">GeometricSolver</string>
     <string name="item1">Choose Problem</string>
     <string name="item2">Formulae</string>
-    <string name="item3">Help Center</string>
+    <string name="item3">About</string>
     <string name="a_b_180">a + b = 180°</string>
     <string name="a_b_d_c">A = B, D =C</string>
     <string name="_1_3_5_7">∠1 = ∠3 = ∠5 = ∠7</string>
@@ -55,7 +55,6 @@
     <string name="solve">Solve</string>
     <string name="r1">r =</string>
     <string name="none">none</string>
-    <string name="vanya_sps_bro">VANYA SPS BRO</string>
     <string name="invalid_math_input">INVALID MATH INPUT"</string>
     <string name="invalid_input">INVALID INPUT"</string>
     <string name="b">b =</string>
@@ -73,5 +72,6 @@
     <string name="d">d =</string>
     <string name="p">P =</string>
     <string name="s">S =</string>
+    <string name="dear_users_welcome_to_this_application_the_application_is_an_assistant_for_solving_geometric_problems_pleasant_use_n_nif_you_find_any_bugs_please_notify_the_developer_n_nthe_author_of_the_application_varga_vladimir">Dear users, welcome to this application.The application is an assistant for solving geometric problems. Pleasant use.\n\nIf you find any bugs, please notify the developer.\n\nThe author of the application Varga Vladimir.</string>
 
 </resources>

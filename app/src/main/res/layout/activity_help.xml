@@ -10,14 +10,17 @@
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="259dp"
-        android:layout_height="346dp"
-        android:text="@string/vanya_sps_bro"
-        android:textSize="30sp"
+        android:layout_width="406dp"
+        android:layout_height="622dp"
+        android:alpha="100"
+        android:fontFamily="@font/montserrat"
+        android:text="@string/dear_users_welcome_to_this_application_the_application_is_an_assistant_for_solving_geometric_problems_pleasant_use_n_nif_you_find_any_bugs_please_notify_the_developer_n_nthe_author_of_the_application_varga_vladimir"
+        android:textAlignment="gravity"
+        android:textColor="#004D40"
+        android:textSize="25sp"
+        android:typeface="normal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.598"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.69" />
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
