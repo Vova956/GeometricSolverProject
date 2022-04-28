@@ -1,6 +1,7 @@
 package com.example.geometricsolver3;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -17,6 +18,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         setTitle("Geometry calculator");
 
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
 
         ImageButton imageButton1 = findViewById(R.id.main_imageButton1);
         imageButton1.setOnClickListener(evt ->{
@@ -41,6 +43,13 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(this,ParallelogramCalculator1.class);
             startActivity(intent);
         });
+
+        ImageButton imageButton5 = findViewById(R.id.main_imageButton5);
+        imageButton5.setOnClickListener(evt ->{
+            Intent intent = new Intent(this,FigureCalculator1.class);
+            startActivity(intent);
+        });
+
 
 
 
