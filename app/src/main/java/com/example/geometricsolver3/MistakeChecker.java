@@ -51,5 +51,14 @@ public class MistakeChecker {
         return OpenBraces == 0 && squareRoots == 0 && CloseBraces == 0 && (str.charAt(0) != '0');
     }
 
+    public static boolean checkForIntMistakes(String str){
+        try{
+            double a = Double.parseDouble(str);
+        }catch (Exception e){
+            return false;
+        }
+        return true;
+    }
+
 
 }

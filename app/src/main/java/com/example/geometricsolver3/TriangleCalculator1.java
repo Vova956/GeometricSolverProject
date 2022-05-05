@@ -101,13 +101,5 @@ public class TriangleCalculator1 extends AppCompatActivity {
             }
 
         });
-
-        Button theoremButton = findViewById(R.id.calculator1_theoremButton);
-        theoremButton.setOnClickListener(evt->{
-            Intent intent = new Intent(this,AboutActivity.class);
-            startActivity(intent);
-        });
-
-
     }
 }
