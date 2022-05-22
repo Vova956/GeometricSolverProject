@@ -75,5 +75,6 @@
     <string name="dear_users_welcome_to_this_application_the_application_is_an_assistant_for_solving_geometric_problems_pleasant_use_n_nif_you_find_any_bugs_please_notify_the_developer_n_nthe_author_of_the_application_varga_vladimir">Dear users, welcome to this application.The application is an assistant for solving geometric problems. Pleasant use.\n\nIf you find any bugs, please notify the developer.\n\nThe author of the application Varga Vladimir.</string>
     <string name="n">n =</string>
     <string name="α">∠α =</string>
+    <string name="more_content_coming">MORE CONTENT COMING</string>
 
 </resources>

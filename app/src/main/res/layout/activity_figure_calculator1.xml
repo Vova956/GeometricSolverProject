@@ -93,6 +93,11 @@
         app:layout_constraintTop_toBottomOf="@+id/calculation5_textView4" />
 
     <EditText
+        android:linksClickable="true"
+        android:hint="@string/empty"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:cursorVisible="false"
         android:id="@+id/calculator5_editText_a"
         android:layout_width="70dp"
         android:layout_height="wrap_content"
@@ -106,6 +111,11 @@
         android:importantForAutofill="no" />
 
     <EditText
+        android:linksClickable="true"
+        android:hint="@string/empty"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:cursorVisible="false"
         android:id="@+id/calculator5_editText_α"
         android:layout_width="70dp"
         android:layout_height="wrap_content"
@@ -119,6 +129,11 @@
         android:importantForAutofill="no" />
 
     <EditText
+        android:linksClickable="true"
+        android:hint="@string/empty"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:cursorVisible="false"
         android:id="@+id/calculator5_editText_R"
         android:layout_width="70dp"
         android:layout_height="wrap_content"
@@ -132,6 +147,11 @@
         android:importantForAutofill="no" />
 
     <EditText
+        android:linksClickable="true"
+        android:hint="@string/empty"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:cursorVisible="false"
         android:id="@+id/calculator5_editText_r"
         android:layout_width="70dp"
         android:layout_height="wrap_content"
@@ -145,6 +165,12 @@
         android:importantForAutofill="no" />
 
     <EditText
+        android:cursorVisible="false"
+        android:linksClickable="true"
+        android:hint="@string/empty"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+
         android:id="@+id/calculator5_editText_n"
         android:layout_width="70dp"
         android:layout_height="wrap_content"
@@ -165,6 +191,7 @@
         android:layout_marginTop="30dp"
         android:background="@drawable/buttton_style"
         android:text="@string/solve"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/imageView4"
@@ -179,6 +206,9 @@
         android:layout_marginStart="5dp"
         android:layout_marginTop="5dp"
         android:layout_marginEnd="5dp"
+        android:fontFamily="@font/montserrat"
+        android:textAlignment="textStart"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="@+id/calculator5_solutionButton"
         app:layout_constraintStart_toStartOf="@+id/calculator5_solutionButton"
         app:layout_constraintTop_toBottomOf="@+id/calculator5_solutionButton" />

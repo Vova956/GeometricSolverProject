@@ -12,6 +12,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import java.io.Console;
+
 public class FigureCalculator1 extends AppCompatActivity {
     private Keyboard keyboard;
     private FragmentManager fragmentManager;
@@ -46,7 +48,7 @@ public class FigureCalculator1 extends AppCompatActivity {
                 public boolean onTouch(View v, MotionEvent event) {
                     if (!isKeyboard) {
                         transaction = fragmentManager.beginTransaction();
-                        transaction.add(R.id.calculator1_keyboard, keyboard);
+                        transaction.add(R.id.calculator5_keyboard, keyboard);
                         transaction.commit();
                         isKeyboard = true;
                     }
@@ -76,11 +78,23 @@ public class FigureCalculator1 extends AppCompatActivity {
                 if(!MistakeChecker.checkForIntMistakes(editText_n.getText().toString()))
                     throw new Exception("INCORRECT INPUT");
 
+
+
                 SquareNumber R = new SquareNumber(editText_R.getText().toString());
                 SquareNumber r = new SquareNumber(editText_r.getText().toString());
                 SquareNumber a = new SquareNumber(editText_a.getText().toString());
-                int n = (int)Double.parseDouble(editText_n.toString());
-                double α = Double.parseDouble(editText_α.toString());
+
+                int n = 0;
+                double α = 0;
+                try {
+                    n = (int) Double.parseDouble(editText_n.getText().toString());
+                }catch (Exception e){n = 0;}
+
+                try {
+                    α = Double.parseDouble(editText_α.getText().toString());
+                }catch (Exception e){α = 0;}
+
+
 
                 Calculation5SolveClass calculator = new Calculation5SolveClass(a, r, R,n ,α);
                 CalculatorThread thread = new CalculatorThread(calculator);

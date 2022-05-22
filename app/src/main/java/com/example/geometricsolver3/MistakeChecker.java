@@ -52,6 +52,8 @@ public class MistakeChecker {
     }
 
     public static boolean checkForIntMistakes(String str){
+        if(str.length() == 0)
+            return true;
         try{
             double a = Double.parseDouble(str);
         }catch (Exception e){

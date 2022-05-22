@@ -14,7 +14,21 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/gradient"
+        android:minHeight="600dp"
         tools:context=".MainActivity">
+
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="50dp"
+            android:fontFamily="@font/montserrat"
+            android:text="@string/more_content_coming"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/horizontalScrollView2"
+            app:layout_constraintStart_toStartOf="@+id/horizontalScrollView2"
+            app:layout_constraintTop_toBottomOf="@+id/horizontalScrollView2" />
 
         <TextView
             android:id="@+id/main_textView1"

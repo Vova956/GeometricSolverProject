@@ -79,6 +79,10 @@
         tools:ignore="SpeakableTextPresentCheck" />
 
     <EditText
+        android:linksClickable="true"
+        android:hint="@string/empty"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
         android:id="@+id/parallegram_calculator1_editTextA"
         android:layout_width="70dp"
         android:layout_height="wrap_content"
@@ -96,6 +100,10 @@
         tools:ignore="SpeakableTextPresentCheck" />
 
     <EditText
+        android:linksClickable="true"
+        android:hint="@string/empty"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
         android:id="@+id/parallegram_calculator1_editTextD"
         android:layout_width="70dp"
         android:layout_height="wrap_content"
@@ -113,6 +121,10 @@
         tools:ignore="SpeakableTextPresentCheck" />
 
     <EditText
+        android:linksClickable="true"
+        android:hint="@string/empty"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
         android:id="@+id/parallegram_calculator1_editTextP"
         android:layout_width="70dp"
         android:layout_height="wrap_content"
@@ -130,6 +142,10 @@
         tools:ignore="SpeakableTextPresentCheck" />
 
     <EditText
+        android:linksClickable="true"
+        android:hint="@string/empty"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
         android:id="@+id/parallegram_calculator1_editTextS"
         android:layout_width="70dp"
         android:layout_height="wrap_content"

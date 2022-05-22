@@ -46,7 +46,9 @@ public class Calculation5SolveClass implements ISolver{
                     throw new GeometryException("R * sin(180/n) ≠ a/2");
             }
 
-            if(r.getMultiply(AngleFunctions.getTg(180/buff)).toDouble() != a.getDivide(2).toDouble())
+
+            if(!r.fromNullString && !a.fromNullString &&
+            r.getMultiply(AngleFunctions.getTg(180/buff)).toDouble() != a.getDivide(2).toDouble())
                 throw new GeometryException("r * tg(180/n) ≠ a/2");
 
         }
