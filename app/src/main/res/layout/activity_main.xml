@@ -129,8 +129,8 @@
 
                 <ImageButton
                     android:id="@+id/main_imageButton4"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="135dp"
+                    android:layout_height="135dp"
                     android:background="@drawable/buttton_style"
                     android:contentDescription="@string/square"
                     app:layout_constraintBottom_toBottomOf="parent"
