@@ -12,7 +12,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:background="@drawable/gradient"
         android:minHeight="600dp"
         tools:context=".MainActivity">
@@ -48,7 +48,7 @@
 
         <HorizontalScrollView
             android:id="@+id/horizontalScrollView"
-            android:layout_width="380dp"
+            android:layout_width="match_parent"
             android:layout_height="150dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="48dp"
@@ -61,7 +61,7 @@
 
                 <ImageButton
                     android:id="@+id/main_imageButton3"
-                    android:layout_width="130dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="130dp"
                     android:layout_marginStart="10dp"
                     android:layout_marginEnd="8dp"

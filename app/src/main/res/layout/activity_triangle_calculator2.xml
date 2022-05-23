@@ -12,6 +12,7 @@
         android:layout_width="200dp"
         android:layout_height="200dp"
         android:layout_marginTop="5dp"
+        android:layout_marginStart="-10dp"
         android:contentDescription="@string/Triangles"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -37,7 +38,7 @@
 
     <EditText
         android:id="@+id/calculator2_editText_a"
-        android:layout_width="70dp"
+        android:layout_width="60dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
         android:cursorVisible="false"
@@ -54,11 +55,12 @@
         app:layout_constraintBottom_toBottomOf="@+id/calculation2_textView1"
         app:layout_constraintStart_toEndOf="@+id/calculation2_textView1"
         app:layout_constraintTop_toTopOf="@+id/calculation2_textView1"
+        app:layout_constraintEnd_toStartOf="@id/calculation2_textView4"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <EditText
         android:id="@+id/calculator2_editText_1"
-        android:layout_width="48dp"
+        android:layout_width="50dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
         android:cursorVisible="false"
@@ -73,13 +75,14 @@
         android:textAlignment="textStart"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="@+id/calculation2_textView4"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/calculation2_textView4"
         app:layout_constraintTop_toTopOf="@+id/calculation2_textView4"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <EditText
         android:id="@+id/calculator2_editText_2"
-        android:layout_width="48dp"
+        android:layout_width="50dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
         android:cursorVisible="false"
@@ -94,13 +97,14 @@
         android:textAlignment="textStart"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="@+id/calculation2_textView5"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/calculation2_textView5"
         app:layout_constraintTop_toTopOf="@+id/calculation2_textView5"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <EditText
         android:id="@+id/calculator2_editText_3"
-        android:layout_width="48dp"
+        android:layout_width="50dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
         android:cursorVisible="false"
@@ -115,13 +119,14 @@
         android:textAlignment="textStart"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="@+id/calculation2_textView6"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/calculation2_textView6"
         app:layout_constraintTop_toTopOf="@+id/calculation2_textView6"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <EditText
         android:id="@+id/calculator2_editText_b"
-        android:layout_width="70dp"
+        android:layout_width="60dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
         android:cursorVisible="false"
@@ -143,7 +148,7 @@
 
     <EditText
         android:id="@+id/calculator2_editText_c"
-        android:layout_width="70dp"
+        android:layout_width="60dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
         android:cursorVisible="false"
