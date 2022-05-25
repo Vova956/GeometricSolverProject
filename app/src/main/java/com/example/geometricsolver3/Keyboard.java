@@ -1,5 +1,6 @@
 package com.example.geometricsolver3;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,12 +18,20 @@ public class Keyboard extends Fragment {
 
     private void setTextView(int difference) {
         if(current + difference >= 0 && current + difference < textViews.length){
+            textViews[current].setTextColor(Color.rgb(0,0,0));
+
+
             current += difference;
+
+            textViews[current].setTextColor(Color.rgb(255,255,252));
         }
     }
 
+
     public void setTextViewIndex(int index){
+        textViews[current].setTextColor(Color.rgb(0,0,0));
         current = index;
+        textViews[current].setTextColor(Color.rgb(255,255,252));
     }
 
     public void setTextsViews(TextView[] textsViews){

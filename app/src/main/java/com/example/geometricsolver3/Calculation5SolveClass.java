@@ -18,6 +18,9 @@ public class Calculation5SolveClass implements ISolver{
     public String solve() throws GeometryException{
         StringBuilder builder = new StringBuilder();
 
+        if(n < 3)
+            throw new GeometryException("n < 3");
+
         if(angle != 0 && n != 0) {
             if (angle != 180 * (n - 2.0) / n)
                 throw new GeometryException("α ≠ 180*(n-2)/n");
@@ -59,6 +62,7 @@ public class Calculation5SolveClass implements ISolver{
                     angle = 180 * (n - 2.0) / n;
                     builder.append("α = 180*(n-2)/n = ");
                     builder.append(angle);
+                    builder.append("\n");
                 }
 
                 if(R.fromNullString){
@@ -66,6 +70,7 @@ public class Calculation5SolveClass implements ISolver{
                     R.divide(2);
                     builder.append("R = a/(2*sin(180/n)) = ");
                     builder.append(R.toString());
+                    builder.append("\n");
                 }
 
                 if(r.fromNullString){
@@ -73,6 +78,7 @@ public class Calculation5SolveClass implements ISolver{
                     r.divide(2);
                     builder.append("r = a/(2*tg(180/n)) = ");
                     builder.append(r.toString());
+                    builder.append("\n");
                 }
                 return builder.toString();
             }
@@ -81,12 +87,14 @@ public class Calculation5SolveClass implements ISolver{
                 n = (int) (360/(180-angle));
                 builder.append("n = 360/(180-α) = ");
                 builder.append(n);
+                builder.append("\n");
 
                 if(R.fromNullString){
                     R = a.getDivide(AngleFunctions.getSin(180.0/n));
                     R.divide(2);
                     builder.append("R = a/(2*sin(180/n)) = ");
                     builder.append(R.toString());
+                    builder.append("\n");
                 }
 
                 if(r.fromNullString){
@@ -94,6 +102,7 @@ public class Calculation5SolveClass implements ISolver{
                     r.divide(2);
                     builder.append("r = a/(2*tg(180/n)) = ");
                     builder.append(r.toString());
+                    builder.append("\n");
                 }
                 return builder.toString();
             }
@@ -103,16 +112,19 @@ public class Calculation5SolveClass implements ISolver{
             if(!a.fromNullString){
                 n = (int) (180/AngleFunctions.getAngleByTg(a.toDouble()/(2*r.toDouble())));
                 builder.append("n = 180/arctg(a/2r) = ").append(n);
+                builder.append("\n");
 
                 if(angle == 0) {
                     angle = 180 * (n - 2.0) / n;
                     builder.append("α = 180(n-2)/n = ").append(angle);
+                    builder.append("\n");
                 }
 
                 if (R.fromNullString) {
                     R = a.getDivide(AngleFunctions.getSin(180.0 / n));
                     R.divide(2);
                     builder.append("R = a/(2*sin(180/n)) = ").append(R.toString());
+                    builder.append("\n");
                 }
 
                 return builder.toString();
@@ -121,16 +133,19 @@ public class Calculation5SolveClass implements ISolver{
             if(n != 0){
                 a = AngleFunctions.getTg(180.0 / n).getMultiply(r).getMultiply(2);
                 builder.append("a = 2*tg(180/n)*r = ").append(a.toString());
+                builder.append("\n");
 
                 if(angle == 0) {
                     angle = 180 * (n - 2.0) / n;
                     builder.append("α = 180(n-2)/n = ").append(angle);
+                    builder.append("\n");
                 }
 
                 if(R.fromNullString) {
                     R = a.getDivide(AngleFunctions.getSin(180.0 / n));
                     R.divide(2);
                     builder.append("R = a/(2*sin(180/n)) = ").append(R.toString());
+                    builder.append("\n");
                 }
 
                 return builder.toString();
@@ -140,14 +155,17 @@ public class Calculation5SolveClass implements ISolver{
                 n = (int) (360/(180-angle));
                 builder.append("n = 360/(180-α) = ");
                 builder.append(n);
+                builder.append("\n");
 
                 a = AngleFunctions.getTg(180.0 / n).getMultiply(r).getMultiply(2);
                 builder.append("a = 2*tg(180/n)*r = ").append(a.toString());
+                builder.append("\n");
 
                 if(R.fromNullString) {
                     R = a.getDivide(AngleFunctions.getSin(180.0 / n));
                     R.divide(2);
                     builder.append("R = a/(2*sin(180/n)) = ").append(R.toString());
+                    builder.append("\n");
                 }
 
                 return builder.toString();
@@ -159,16 +177,19 @@ public class Calculation5SolveClass implements ISolver{
             if(!a.fromNullString){
                 n = (int) (180/AngleFunctions.getAngleBySin(a.getDivide(R).getDivide(2)));
                 builder.append("n = 180/arcsin(a/2R) = ").append(n);
+                builder.append("\n");
 
                 if(angle == 0) {
                     angle = 180 * (n - 2.0) / n;
                     builder.append("α = 180(n-2)/n = ").append(angle);
+                    builder.append("\n");
                 }
 
                 if(r.fromNullString) {
                     r = a.getDivide(AngleFunctions.getTg(180.0 / n));
                     r.divide(2);
                     builder.append("r = a/(2*tg(180/n)) = ").append(r.toString());
+                    builder.append("\n");
                 }
                 return builder.toString();
             }
@@ -176,16 +197,19 @@ public class Calculation5SolveClass implements ISolver{
             if(n != 0){
                 a = R.getMultiply(AngleFunctions.getSin(180.0/n)).getMultiply(2);
                 builder.append("a = 2R * sin(180/n) = ").append(a.toString());
+                builder.append("\n");
 
                 if(angle == 0) {
                     angle = 180 * (n - 2.0) / n;
                     builder.append("α = 180(n-2)/n = ").append(angle);
+                    builder.append("\n");
                 }
 
                 if(r.fromNullString) {
                     r = a.getDivide(AngleFunctions.getTg(180.0 / n));
                     r.divide(2);
                     builder.append("r = a/(2*tg(180/n)) = ").append(r.toString());
+                    builder.append("\n");
                 }
 
                 return builder.toString();
@@ -195,14 +219,17 @@ public class Calculation5SolveClass implements ISolver{
                 n = (int) (360/(180-angle));
                 builder.append("n = 360/(180-α) = ");
                 builder.append(n);
+                builder.append("\n");
 
                 a = R.getMultiply(AngleFunctions.getSin(180.0/n)).getMultiply(2);
                 builder.append("a = 2R * sin(180/n) = ").append(a.toString());
+                builder.append("\n");
 
                 if(r.fromNullString) {
                     r = a.getDivide(AngleFunctions.getTg(180.0 / n));
                     r.divide(2);
                     builder.append("r = a/(2*tg(180/n)) = ").append(r.toString());
+                    builder.append("\n");
                 }
                 return builder.toString();
             }
@@ -211,16 +238,19 @@ public class Calculation5SolveClass implements ISolver{
         if(!R.fromNullString && !r.fromNullString){
             angle = AngleFunctions.getAngleByCos(r.getDivide(R));
             builder.append("α = arccos(r/R) = ").append(angle);
+            builder.append("\n");
 
             if(n == 0) {
                 n = (int) (360 / (180 - angle));
                 builder.append("n = 360/(180-α) = ");
                 builder.append(n);
+                builder.append("\n");
             }
 
             if(a.fromNullString) {
                 a = R.getMultiply(AngleFunctions.getSin(180.0 / n)).getMultiply(2);
                 builder.append("a = 2R * sin(180/n) = ").append(a.toString());
+                builder.append("\n");
             }
             return builder.toString();
         }
