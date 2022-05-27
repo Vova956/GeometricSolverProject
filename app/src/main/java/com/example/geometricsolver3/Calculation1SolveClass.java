@@ -26,6 +26,15 @@ public class Calculation1SolveClass implements ISolver{
         if (!a.fromNullString && !r.fromNullString && !r.getMultiply(squareNumber23).equals(a))
             throw new GeometryException("r ≠ 2√(3) * a");
 
+        if(!R.fromNullString && R.toDouble() == 0)
+            throw new GeometryException("R = 0");
+
+        if(!r.fromNullString && r.toDouble() == 0)
+            throw new GeometryException("r = 0");
+
+        if(!a.fromNullString && a.toDouble() == 0)
+            throw new GeometryException("a = 0");
+
 
         StringBuilder answerString = new StringBuilder();
 

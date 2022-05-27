@@ -18,7 +18,7 @@ public class Calculation5SolveClass implements ISolver{
     public String solve() throws GeometryException{
         StringBuilder builder = new StringBuilder();
 
-        if(n < 3)
+        if(n < 3 && n != 0)
             throw new GeometryException("n < 3");
 
         if(angle != 0 && n != 0) {
@@ -57,6 +57,8 @@ public class Calculation5SolveClass implements ISolver{
         }
 
         if(!a.fromNullString){
+            if(a.toDouble() == 0)
+                throw new GeometryException("a = 0");
             if(n != 0){
                 if(angle == 0) {
                     angle = 180 * (n - 2.0) / n;
@@ -109,6 +111,8 @@ public class Calculation5SolveClass implements ISolver{
         }
 
         if(!r.fromNullString){
+            if(r.toDouble() == 0)
+                throw new GeometryException("r = 0");
             if(!a.fromNullString){
                 n = (int) (180/AngleFunctions.getAngleByTg(a.toDouble()/(2*r.toDouble())));
                 builder.append("n = 180/arctg(a/2r) = ").append(n);
@@ -174,6 +178,8 @@ public class Calculation5SolveClass implements ISolver{
         }
 
         if(!R.fromNullString){
+            if(R.toDouble() == 0)
+                throw new GeometryException("R = 0");
             if(!a.fromNullString){
                 n = (int) (180/AngleFunctions.getAngleBySin(a.getDivide(R).getDivide(2)));
                 builder.append("n = 180/arcsin(a/2R) = ").append(n);

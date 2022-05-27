@@ -17,6 +17,8 @@ public class Calculation4SolveClass  implements ISolver{
         SquareNumber two = new SquareNumber(1,2);
 
         if(!a.fromNullString ){
+            if(a.toDouble() == 0)
+                throw new GeometryException("a = 0");
             if(!P.fromNullString && a.toDouble() != P.getDivide(4).toDouble())
                 throw new GeometryException("a ≠ P/4");
             if(!S.fromNullString && S.getRoot() != a.toDouble())
@@ -26,6 +28,8 @@ public class Calculation4SolveClass  implements ISolver{
         }
 
         if(!S.fromNullString){
+            if(S.toDouble() == 0)
+                throw new GeometryException("S = 0");
             if(!P.fromNullString && P.getDivide(4).toDouble() != S.getRoot())
                 throw new GeometryException("√S ≠ P/4");
             if(!d.fromNullString && d.getDivide(two).toDouble() != S.getRoot())
@@ -69,6 +73,9 @@ public class Calculation4SolveClass  implements ISolver{
         }
 
         else if(!d.fromNullString){
+            if(d.toDouble() == 0)
+                throw new GeometryException("d = 0");
+
             a = d.getDivide(two);
             stringBuilder.append("a = d/√2 = ");
             stringBuilder.append(d);
@@ -78,7 +85,7 @@ public class Calculation4SolveClass  implements ISolver{
 
             if(S.fromNullString) {
                 S = a.getMultiply(a);
-                stringBuilder.append("d =  a * a = ");
+                stringBuilder.append("S =  a * a = ");
                 stringBuilder.append(a);
                 stringBuilder.append(" * ");
                 stringBuilder.append(a);
@@ -101,6 +108,8 @@ public class Calculation4SolveClass  implements ISolver{
             return stringBuilder.toString();
         }
         else if(!P.fromNullString){
+            if(P.toDouble() == 0)
+                throw new GeometryException("P = 0");
             a = P.getDivide(4);
             stringBuilder.append("a = P/4 = ");
             stringBuilder.append(P);

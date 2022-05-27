@@ -69,6 +69,7 @@ public class TriangleCalculator3 extends AppCompatActivity {
                 for (int i = 0; i < textViews.length; i++) {
                     if (!MistakeChecker.checkForMistakes(textViews[i].toString())) {
                         throw new Exception("INVALID INPUT");
+
                     }
                 }
 
@@ -97,10 +98,14 @@ public class TriangleCalculator3 extends AppCompatActivity {
                     });
                 });
                 thread.start();
-            }catch (Exception e){
-               answer.setTextColor(Color.RED);
-               answer.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
-               answer.setText(e.getMessage());
+            }catch (GeometryException e) {
+                answer.setTextColor(Color.RED);
+                answer.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+                answer.setText(e.getMessage());
+            } catch (Exception e){
+                answer.setTextColor(Color.RED);
+                answer.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+                answer.setText("INVALID INPUT");
             }
         });
 

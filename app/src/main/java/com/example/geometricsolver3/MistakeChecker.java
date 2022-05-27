@@ -56,6 +56,10 @@ public class MistakeChecker {
             return true;
         try{
             double a = Double.parseDouble(str);
+
+            if(a != (int)a)
+                return false;
+
         }catch (Exception e){
             return false;
         }

@@ -31,6 +31,10 @@ public class Calculation3SolveClass  implements ISolver{
         }
 
         if(!k.fromNullString){
+
+            if(k.toDouble() == 0)
+                throw new GeometryException("k = 0");
+
             if(!a1.fromNullString && !a.fromNullString){
                 if(a.toDouble() != k.getMultiply(a1).toDouble())
                     throw new GeometryException("k ≠ a / a1");
@@ -46,6 +50,20 @@ public class Calculation3SolveClass  implements ISolver{
                     throw new GeometryException("k ≠ c / c1");
             }
         }
+
+        if(!c.fromNullString && c.toDouble() == 0)
+            throw new GeometryException("c = 0");
+        if(!a.fromNullString && a.toDouble() == 0)
+            throw new GeometryException("a = 0");
+        if(!b.fromNullString && b.toDouble() == 0)
+            throw new GeometryException("b = 0");
+
+        if(!c1.fromNullString && c1.toDouble() == 0)
+            throw new GeometryException("c1 = 0");
+        if(!a1.fromNullString && a1.toDouble() == 0)
+            throw new GeometryException("a1 = 0");
+        if(!b1.fromNullString && b1.toDouble() == 0)
+            throw new GeometryException("b1 = 0");
 
         if(!a1.fromNullString && !a.fromNullString){
             if(k.fromNullString) {

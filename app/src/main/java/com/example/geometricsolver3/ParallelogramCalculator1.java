@@ -82,11 +82,14 @@ public class ParallelogramCalculator1 extends AppCompatActivity {
                 answer.setTextAlignment(View.TEXT_ALIGNMENT_TEXT_START);
                 answer.setText(solutionString);
 
-            }catch(Exception e){
+            }catch (GeometryException e) {
                 answer.setTextColor(Color.RED);
                 answer.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
                 answer.setText(e.getMessage());
-                Log.d("Error",e.getMessage());
+            } catch (Exception e){
+                answer.setTextColor(Color.RED);
+                answer.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+                answer.setText("INVALID INPUT");
             }
         });
 

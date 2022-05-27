@@ -94,10 +94,14 @@ public class TriangleCalculator1 extends AppCompatActivity {
                 thread.start();
 
 
-            } catch (Exception e) {
+            } catch (GeometryException e) {
                 answer.setTextColor(Color.RED);
                 answer.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
                 answer.setText(e.getMessage());
+            } catch (Exception e){
+                answer.setTextColor(Color.RED);
+                answer.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+                answer.setText("INVALID INPUT");
             }
 
         });

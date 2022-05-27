@@ -60,6 +60,15 @@ public class Calculation2SolveClass  implements ISolver{
         int AmountOfKnownSides = getAmountOfKnownSides();
         int AmountOfKnownAngles = getAmountOfKnownAngles();
 
+        if(!side_a.fromNullString && side_a.toDouble() == 0)
+            throw new GeometryException("a = 0");
+
+        if(!side_b.fromNullString && side_b.toDouble() == 0)
+            throw new GeometryException("b = 0");
+
+        if(!side_c.fromNullString && side_c.toDouble() == 0)
+            throw new GeometryException("c = 0");
+
         if(AmountOfKnownSides == 3){
             if (side_a.toDouble() + side_b.toDouble() <= side_c.toDouble() || side_b.toDouble() + side_c.toDouble() <= side_a.toDouble() ||
                     side_a.toDouble() + side_c.toDouble() <= side_b.toDouble()) {
