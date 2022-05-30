@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.geometricsolver3">
+    package="solver.geom.geometricsolver3">
     <uses-permission android:name="android.permission.INTERNET"/>
 
 
@@ -20,9 +20,9 @@
             android:value="ca-app-pub-3940256099942544~3347511713"/>
 
         <activity
-            android:name=".FigureCalculator1"
+            android:name="solver.geom.geometricsolver3.FigureCalculator1"
             android:exported="false"
-            android:parentActivityName=".MainActivity"
+            android:parentActivityName="solver.geom.geometricsolver3.MainActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden"/>
         <activity
