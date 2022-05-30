@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="solver.geom.geometricsolver3">
+    android:versionName="2.0"
+    package="com.geom.geometricsolver3">
     <uses-permission android:name="android.permission.INTERNET"/>
 
 
@@ -17,50 +18,50 @@
 
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="ca-app-pub-3940256099942544~3347511713"/>
+            android:value="ca-app-pub-5814028506169648~7879675580"/>
 
         <activity
-            android:name="solver.geom.geometricsolver3.FigureCalculator1"
+            android:name="com.geom.geometricsolver3.FigureCalculator1"
             android:exported="false"
-            android:parentActivityName="solver.geom.geometricsolver3.MainActivity"
+            android:parentActivityName="com.geom.geometricsolver3.MainActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden"/>
         <activity
-            android:name=".ParallelogramCalculator1"
+            android:name="com.geom.geometricsolver3.ParallelogramCalculator1"
             android:exported="false"
-            android:parentActivityName=".MainActivity"
+            android:parentActivityName="com.geom.geometricsolver3.MainActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden" />
         <activity
-            android:name=".TriangleCalculator3"
+            android:name="com.geom.geometricsolver3.TriangleCalculator3"
             android:exported="false"
-            android:parentActivityName=".MainActivity"
+            android:parentActivityName="com.geom.geometricsolver3.MainActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden" />
         <activity
-            android:name=".TriangleCalculator2"
+            android:name="com.geom.geometricsolver3.TriangleCalculator2"
             android:exported="false"
-            android:parentActivityName=".MainActivity"
+            android:parentActivityName="com.geom.geometricsolver3.MainActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden" />
         <activity
-            android:name=".TriangleCalculator1"
+            android:name="com.geom.geometricsolver3.TriangleCalculator1"
             android:exported="false"
-            android:parentActivityName=".MainActivity"
+            android:parentActivityName="com.geom.geometricsolver3.MainActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden" />
         <activity
-            android:name=".HelpActivity"
+            android:name="com.geom.geometricsolver3.HelpActivity"
             android:exported="false"
-            android:parentActivityName=".MainActivity"
+            android:parentActivityName="com.geom.geometricsolver3.MainActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".AboutActivity"
+            android:name="com.geom.geometricsolver3.AboutActivity"
             android:exported="false"
-            android:parentActivityName=".MainActivity"
+            android:parentActivityName="com.geom.geometricsolver3.MainActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".MainActivity"
+            android:name="com.geom.geometricsolver3.MainActivity"
             android:exported="true"
             android:screenOrientation="portrait">
             <intent-filter>
