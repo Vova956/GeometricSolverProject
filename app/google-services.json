@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "632279679710",
+    "project_id": "geometricsolver-7b9ee",
+    "storage_bucket": "geometricsolver-7b9ee.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:632279679710:android:f510e9f4594a6d2e4b384f",
+        "android_client_info": {
+          "package_name": "com.geom.geometricsolver3"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "632279679710-eom0nuspr2aah7mnb22m6jsgrbugtg3q.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAJKcv3jcO29S7KQ8ALrEF6yDCfiVuYcTQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "632279679710-eom0nuspr2aah7mnb22m6jsgrbugtg3q.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
