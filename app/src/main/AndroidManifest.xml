@@ -20,6 +20,7 @@
             android:name="com.google.android.gms.ads.APPLICATION_ID"
             android:value="ca-app-pub-5814028506169648~7879675580"/>
 
+
         <activity
             android:name="com.geom.geometricsolver3.FigureCalculator1"
             android:exported="false"
