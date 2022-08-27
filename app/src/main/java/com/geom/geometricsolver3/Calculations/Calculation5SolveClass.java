@@ -1,6 +1,11 @@
-package com.geom.geometricsolver3;
+package com.geom.geometricsolver3.Calculations;
 
-public class Calculation5SolveClass implements ISolver{
+import com.geom.geometricsolver3.Interfaces.ISolver;
+import com.geom.geometricsolver3.Math.AngleFunctions;
+import com.geom.geometricsolver3.Math.GeometryException;
+import com.geom.geometricsolver3.Math.SquareNumber;
+
+public class Calculation5SolveClass implements ISolver {
     private SquareNumber a;
     private SquareNumber r;
     private SquareNumber R;
@@ -15,7 +20,7 @@ public class Calculation5SolveClass implements ISolver{
         this.angle = angle;
     }
 
-    public String solve() throws GeometryException{
+    public String solve() throws GeometryException {
         StringBuilder builder = new StringBuilder();
 
         if(n < 3 && n != 0)

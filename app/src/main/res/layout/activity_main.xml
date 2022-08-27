@@ -16,7 +16,7 @@
         android:layout_height="wrap_content"
         android:background="@drawable/gradient"
         android:minHeight="600dp"
-        tools:context="com.geom.geometricsolver3.MainActivity">
+        tools:context="com.geom.geometricsolver3.Activities.MainActivity">
 
         <TextView
             android:id="@+id/textView6"

@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:background="@drawable/gradient"
     android:layout_height="match_parent"
-    tools:context="com.geom.geometricsolver3.HelpActivity">
+    tools:context="com.geom.geometricsolver3.Activities.HelpActivity">
 
     <TextView
         android:id="@+id/textView"

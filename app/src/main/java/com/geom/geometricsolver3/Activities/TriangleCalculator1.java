@@ -1,4 +1,4 @@
-package com.geom.geometricsolver3;
+package com.geom.geometricsolver3.Activities;
 
 import android.annotation.SuppressLint;
 import android.graphics.Color;
@@ -11,6 +11,14 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+
+import com.geom.geometricsolver3.Calculations.Calculation1SolveClass;
+import com.geom.geometricsolver3.Math.CalculatorThread;
+import com.geom.geometricsolver3.Math.GeometryException;
+import com.geom.geometricsolver3.Fragments.Keyboard;
+import com.geom.geometricsolver3.Math.MistakeChecker;
+import com.geom.geometricsolver3.R;
+import com.geom.geometricsolver3.Math.SquareNumber;
 
 public class TriangleCalculator1 extends AppCompatActivity {
     private Keyboard keyboard;

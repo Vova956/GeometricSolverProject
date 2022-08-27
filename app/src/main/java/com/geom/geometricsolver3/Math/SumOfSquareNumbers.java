@@ -1,4 +1,5 @@
-package com.geom.geometricsolver3;
+package com.geom.geometricsolver3.Math;
+
 import java.util.ArrayList;
 
 public class SumOfSquareNumbers {

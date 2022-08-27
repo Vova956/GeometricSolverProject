@@ -1,5 +1,10 @@
-package com.geom.geometricsolver3;
-public class Calculation4SolveClass  implements ISolver{
+package com.geom.geometricsolver3.Calculations;
+
+import com.geom.geometricsolver3.Interfaces.ISolver;
+import com.geom.geometricsolver3.Math.GeometryException;
+import com.geom.geometricsolver3.Math.SquareNumber;
+
+public class Calculation4SolveClass  implements ISolver {
     private SquareNumber P;
     private SquareNumber S;
     private SquareNumber a;
@@ -12,7 +17,7 @@ public class Calculation4SolveClass  implements ISolver{
         this.d = d;
     }
 
-    public String solve() throws GeometryException{
+    public String solve() throws GeometryException {
         StringBuilder stringBuilder = new StringBuilder();
         SquareNumber two = new SquareNumber(1,2);
 
@@ -139,6 +144,7 @@ public class Calculation4SolveClass  implements ISolver{
         }
         else if(!S.fromNullString){
             a = new SquareNumber(1,S.toDouble());
+            a = a.getMultiply(new SquareNumber(1,1));
             stringBuilder.append("a = √S = √");
             stringBuilder.append(S);
             stringBuilder.append(" = ");

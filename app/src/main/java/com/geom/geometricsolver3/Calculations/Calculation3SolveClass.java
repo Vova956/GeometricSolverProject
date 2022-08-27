@@ -1,6 +1,10 @@
-package com.geom.geometricsolver3;
+package com.geom.geometricsolver3.Calculations;
 
-public class Calculation3SolveClass  implements ISolver{
+import com.geom.geometricsolver3.Interfaces.ISolver;
+import com.geom.geometricsolver3.Math.GeometryException;
+import com.geom.geometricsolver3.Math.SquareNumber;
+
+public class Calculation3SolveClass  implements ISolver {
     private SquareNumber a;
     private SquareNumber b;
     private SquareNumber c;
@@ -19,7 +23,7 @@ public class Calculation3SolveClass  implements ISolver{
         this.k = k;
     }
 
-    public String solve() throws GeometryException{
+    public String solve() throws GeometryException {
         StringBuilder stringBuilder = new StringBuilder();
 
         if(!canSolve()){

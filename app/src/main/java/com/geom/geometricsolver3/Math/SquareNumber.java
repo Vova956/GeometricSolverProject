@@ -1,4 +1,4 @@
-package com.geom.geometricsolver3;
+package com.geom.geometricsolver3.Math;
 
 import java.math.BigDecimal;
 import java.text.DecimalFormat;

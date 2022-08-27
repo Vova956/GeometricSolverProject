@@ -1,4 +1,4 @@
-package com.geom.geometricsolver3;
+package com.geom.geometricsolver3.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
@@ -12,29 +12,41 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-public class FigureCalculator1 extends AppCompatActivity {
-    private Keyboard keyboard;
+import com.geom.geometricsolver3.Calculations.Calculation3SolveClass;
+import com.geom.geometricsolver3.Math.CalculatorThread;
+import com.geom.geometricsolver3.Math.GeometryException;
+import com.geom.geometricsolver3.Fragments.Keyboard;
+import com.geom.geometricsolver3.Math.MistakeChecker;
+import com.geom.geometricsolver3.R;
+import com.geom.geometricsolver3.Math.SquareNumber;
+
+public class TriangleCalculator3 extends AppCompatActivity {
     private FragmentManager fragmentManager;
     private FragmentTransaction transaction;
+    private Keyboard keyboard;
     private boolean isKeyboard = false;
+    TextView answer;
 
-    @SuppressLint("ClickableViewAccessibility")
     @Override
+    @SuppressLint("ClickableViewAccessibility")
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_figure_calculator1);
+        setContentView(R.layout.activity_triangle_calculator3);
+        setTitle("Similarity of triangles");
 
-        setTitle("N-Figure");
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        TextView editText1 = this.findViewById(R.id.calculation3_editText1);
+        TextView editText2 = this.findViewById(R.id.calculation3_editText2);
+        TextView editText3 = this.findViewById(R.id.calculation3_editText3);
+        TextView editText4 = this.findViewById(R.id.calculation3_editText4);
+        TextView editText5 = this.findViewById(R.id.calculation3_editText5);
+        TextView editText6 = this.findViewById(R.id.calculation3_editText6);
+        TextView editText7 = this.findViewById(R.id.calculation3_editText7);
 
-        TextView editText_a = this.findViewById(R.id.calculator5_editText_a);
-        TextView editText_r = this.findViewById(R.id.calculator5_editText_r);
-        TextView editText_R = this.findViewById(R.id.calculator5_editText_R);
-        TextView editText_n = this.findViewById(R.id.calculator5_editText_n);
-        TextView editText_α = this.findViewById(R.id.calculator5_editText_α);
+        Button solveButton = findViewById(R.id.calculation3_solveButton);
+        answer = findViewById(R.id.calculation3_answer);
 
         keyboard = new Keyboard();
-        TextView[] textViews = {editText_a, editText_r, editText_R, editText_n, editText_α};
+        TextView[] textViews = {editText1,editText2,editText3,editText4,editText5,editText6,editText7};
         keyboard.setTextsViews(textViews);
         fragmentManager = getSupportFragmentManager();
 
@@ -46,7 +58,7 @@ public class FigureCalculator1 extends AppCompatActivity {
                 public boolean onTouch(View v, MotionEvent event) {
                     if (!isKeyboard) {
                         transaction = fragmentManager.beginTransaction();
-                        transaction.add(R.id.calculator5_keyboard, keyboard);
+                        transaction.add(R.id.calculation3_keyboard, keyboard);
                         transaction.commit();
                         isKeyboard = true;
                     }
@@ -56,47 +68,28 @@ public class FigureCalculator1 extends AppCompatActivity {
             });
         }
 
-        Button solveButton = findViewById(R.id.calculator5_solutionButton);
-        TextView answer = findViewById(R.id.calculation5_answerTextView);
-
-        solveButton.setOnClickListener(evt -> {
-            answer.setTextColor(Color.BLACK);
+        solveButton.setOnClickListener(evt->{
             answer.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+            answer.setTextColor(Color.BLACK);
             answer.setText("...");
-
             try {
-                for (int i = 0; i < textViews.length-1; i++) {
-                    if(!MistakeChecker.checkForMistakes(textViews[i].getText().toString()))
-                        throw new Exception("INCORRECT INPUT");
+                for (int i = 0; i < textViews.length; i++) {
+                    if (!MistakeChecker.checkForMistakes(textViews[i].toString())) {
+                        throw new Exception("INVALID INPUT");
+
+                    }
                 }
 
-                if(!MistakeChecker.checkForAngleMistakes(editText_α.getText().toString()))
-                    throw new Exception("INCORRECT INPUT");
+                SquareNumber a = new SquareNumber(editText1.getText().toString());
+                SquareNumber b = new SquareNumber(editText2.getText().toString());
+                SquareNumber c = new SquareNumber(editText3.getText().toString());
+                SquareNumber a1 = new SquareNumber(editText4.getText().toString());
+                SquareNumber b1 = new SquareNumber(editText5.getText().toString());
+                SquareNumber c1 = new SquareNumber(editText6.getText().toString());
+                SquareNumber k = new SquareNumber(editText7.getText().toString());
 
-                if(!MistakeChecker.checkForIntMistakes(editText_n.getText().toString()))
-                    throw new Exception("INCORRECT INPUT");
-
-
-
-                SquareNumber R = new SquareNumber(editText_R.getText().toString());
-                SquareNumber r = new SquareNumber(editText_r.getText().toString());
-                SquareNumber a = new SquareNumber(editText_a.getText().toString());
-
-                int n = 0;
-                double α = 0;
-                try {
-                    n = (int) Double.parseDouble(editText_n.getText().toString());
-                }catch (Exception e){n = 0;}
-
-                try {
-                    α = Double.parseDouble(editText_α.getText().toString());
-                }catch (Exception e){α = 0;}
-
-
-
-                Calculation5SolveClass calculator = new Calculation5SolveClass(a, r, R,n ,α);
+                Calculation3SolveClass calculator = new Calculation3SolveClass(a,b,c,a1,b1,c1,k);
                 CalculatorThread thread = new CalculatorThread(calculator);
-
                 thread.setExitStrategy(() ->{
                     runOnUiThread(()->{
                         try{
@@ -112,9 +105,7 @@ public class FigureCalculator1 extends AppCompatActivity {
                     });
                 });
                 thread.start();
-
-
-            } catch (GeometryException e) {
+            }catch (GeometryException e) {
                 answer.setTextColor(Color.RED);
                 answer.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
                 answer.setText(e.getMessage());
@@ -123,7 +114,9 @@ public class FigureCalculator1 extends AppCompatActivity {
                 answer.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
                 answer.setText("INVALID INPUT");
             }
-
         });
+
+
+
     }
 }

@@ -1,14 +1,17 @@
-package com.geom.geometricsolver3;
+package com.geom.geometricsolver3.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageButton;
 
+import com.geom.geometricsolver3.R;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 
@@ -66,8 +69,29 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
+        checkFirstStart();
+
+    }
+
+    private void checkFirstStart() {
+
+        SharedPreferences sp = getSharedPreferences("hasVisited", Context.MODE_PRIVATE);
+
+        boolean hasVisited = sp.getBoolean("hasVisited", false);
+
+        if (!hasVisited) {
+
+            SharedPreferences.Editor e = sp.edit();
+            e.putBoolean("hasVisited", true);
+            e.commit();
 
 
+            Intent intent = new Intent(this,FirstTimeActivity.class);
+            startActivity(intent);
+
+        }else {
+
+        }
     }
 
     @Override
@@ -83,7 +107,7 @@ public class MainActivity extends AppCompatActivity {
 
         switch (id){
             case R.id.aboutAction:
-                intent = new Intent(this,AboutActivity.class);
+                intent = new Intent(this,FormulaeActivity.class);
                 startActivity(intent);
                 break;
             case R.id.helpCenterAction:

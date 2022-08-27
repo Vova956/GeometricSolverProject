@@ -1,4 +1,7 @@
-package com.geom.geometricsolver3;
+package com.geom.geometricsolver3.Math;
+
+import com.geom.geometricsolver3.Interfaces.IPostAction;
+import com.geom.geometricsolver3.Interfaces.ISolver;
 
 public class CalculatorThread extends Thread{
     private IPostAction action;

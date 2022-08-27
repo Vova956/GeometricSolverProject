@@ -76,7 +76,35 @@
     <string name="n">n =</string>
     <string name="α">∠α =</string>
     <string name="more_content_coming">MORE CONTENT IS COMING</string>
-    <string name="banner_ad_unit_id" >ca-app-pub-5814028506169648/4234646872</string>
+    <string name="banner_ad_unit_id">ca-app-pub-5814028506169648/4234646872</string>
+    <string name="welcome">Dear user, welcome to Geometric Solver. To solve problems, click on the enter field, use keyboard to enter numbers, and click in solve button. Pleasant use.</string>
+
+    <string name="Formula1">Equal triangles</string>
+    <string name="Formula1_description">Triangles are equal by\n1)Two sides and angle\n2)Two angles and side\n3)Three sides</string>
+
+    <string name="Formula2">Similar triangles</string>
+    <string name="Formula2_description">Triangles are similar by\n1)Two proportional sides and angle\n2)Two angles\n3)Three proportionals sides</string>
+
+    <string name="Formula3"> Equilateral triangle</string>
+    <string name="Formula3_description">r = a/2√3 \nR=a/√3\nR=2r</string>
+
+    <string name="Formula4">Isosceles triangle</string>
+    <string name="Formula4_description">AB = BC = 0.5 * AC * cosA</string>
+
+    <string name="Formula5">Right Triangle</string>
+    <string name="Formula5_description">a² + b² = c²\nCE² = AE * BE\nCB² = EB*AB\nAC² = AE*AB</string>
+
+    <string name="Formula6">Area formulas</string>
+    <string name="Formula6_description">p=(a+b+c)/2\nS = pr = 0.5 * h * a = √(p*(p-a)*(p-b)*(p-c))</string>
+
+    <string name="Formula7">Sin theorem</string>
+    <string name="Formula7_description">sinα/a = sinβ/b = sinγ/c = 2R</string>
+
+    <string name="Formula8">Cos theorem</string>
+    <string name="Formula8_description">a² = b² + c² -2ab*cosα</string>
+
+
+
 
 
 </resources>

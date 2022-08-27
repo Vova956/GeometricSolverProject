@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/gradient"
-    tools:context="com.geom.geometricsolver3.TriangleCalculator1">
+    tools:context="com.geom.geometricsolver3.Activities.TriangleCalculator1">
 
     <ImageView
         android:id="@+id/calculator1_image1"

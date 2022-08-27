@@ -1,4 +1,4 @@
-package com.geom.geometricsolver3;
+package com.geom.geometricsolver3.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
@@ -11,6 +11,13 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+
+import com.geom.geometricsolver3.Calculations.Calculation4SolveClass;
+import com.geom.geometricsolver3.Math.GeometryException;
+import com.geom.geometricsolver3.Fragments.Keyboard;
+import com.geom.geometricsolver3.Math.MistakeChecker;
+import com.geom.geometricsolver3.R;
+import com.geom.geometricsolver3.Math.SquareNumber;
 
 public class ParallelogramCalculator1 extends AppCompatActivity {
 

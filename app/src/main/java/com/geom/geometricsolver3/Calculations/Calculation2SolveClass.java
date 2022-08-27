@@ -1,8 +1,15 @@
-package com.geom.geometricsolver3;
+package com.geom.geometricsolver3.Calculations;
+
+import com.geom.geometricsolver3.Interfaces.ISolver;
+import com.geom.geometricsolver3.Math.AngleFunctions;
+import com.geom.geometricsolver3.Math.GeometryException;
+import com.geom.geometricsolver3.Math.SquareRootSum;
+import com.geom.geometricsolver3.Math.SumOfSquareNumbers;
+import com.geom.geometricsolver3.Math.SquareNumber;
 
 import java.text.DecimalFormat;
 
-public class Calculation2SolveClass  implements ISolver{
+public class Calculation2SolveClass  implements ISolver {
     private SquareNumber side_a;
     private SquareNumber side_b;
     private SquareNumber side_c;

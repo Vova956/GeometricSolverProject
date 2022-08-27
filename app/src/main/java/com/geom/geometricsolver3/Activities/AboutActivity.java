@@ -1,8 +1,10 @@
-package com.geom.geometricsolver3;
+package com.geom.geometricsolver3.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.geom.geometricsolver3.R;
 
 
 public class AboutActivity extends AppCompatActivity {

@@ -1,4 +1,4 @@
-package com.geom.geometricsolver3;
+package com.geom.geometricsolver3.Math;
 
 public class AngleFunctions {
     public static SquareNumber getCos(double angle) {

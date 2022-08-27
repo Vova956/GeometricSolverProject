@@ -1,6 +1,12 @@
-package com.geom.geometricsolver3;
+package com.geom.geometricsolver3.Calculations;
 
-public class Calculation6SolveClass implements ISolver{
+import com.geom.geometricsolver3.Interfaces.ISolver;
+import com.geom.geometricsolver3.Math.GeometryException;
+import com.geom.geometricsolver3.Math.SquareRootSum;
+import com.geom.geometricsolver3.Math.SumOfSquareNumbers;
+import com.geom.geometricsolver3.Math.SquareNumber;
+
+public class Calculation6SolveClass implements ISolver {
     private SquareNumber a;
     private SquareNumber b;
     private SquareNumber c;

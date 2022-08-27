@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/gradient"
-    tools:context="com.geom.geometricsolver3.FigureCalculator1">
+    tools:context="com.geom.geometricsolver3.Activities.FigureCalculator1">
 
     <ImageView
         android:id="@+id/imageView4"
