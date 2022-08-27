@@ -2,11 +2,16 @@ package com.geom.geometricsolver3.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
-import android.widget.TextView;
+import android.widget.ListView;
 
+import com.geom.geometricsolver3.Adapters.FormulaAdapter;
 import com.geom.geometricsolver3.DB.FormulaDB;
 import com.geom.geometricsolver3.DB.FormulaData;
+import com.geom.geometricsolver3.POJO.Formula;
 import com.geom.geometricsolver3.R;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class FormulaeActivity extends AppCompatActivity {
 
@@ -16,8 +21,16 @@ public class FormulaeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_formulae);
 
         FormulaDB db = FormulaDB.getInstance(this);
+        List<FormulaData> formulas = db.formulaDAO().getAll();
+        ArrayList<Formula> formulasToShow = new ArrayList<>();
 
-        TextView textView = findViewById(R.id.textView5);
-        textView.setText(db.formulaDAO().getAll().get(0).getName());
+        for (int i = 0; i < formulas.size(); i++) {
+            FormulaData buff = formulas.get(i);
+            formulasToShow.add(new Formula(buff.getName(),buff.getDescription()));
+        }
+
+        FormulaAdapter formulaAdapter = new FormulaAdapter(this,formulasToShow);
+        ListView listView = findViewById(R.id.formulaListView);
+        listView.setAdapter(formulaAdapter);
     }
 }

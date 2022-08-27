@@ -27,5 +27,7 @@ public class FirstTimeActivity extends AppCompatActivity {
         Thread thread = new Thread(()->{
             FormulaFiller.FillTable(context);
         });
+
+        thread.start();
     }
 }

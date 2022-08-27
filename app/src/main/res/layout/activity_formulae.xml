@@ -4,13 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activities.FormulaeActivity">
+    android:background="@drawable/gradient"
+    tools:context=".Activities.FormulaeActivity" >
 
-    <TextView
-        android:id="@+id/textView5"
-        android:layout_width="140dp"
-        android:layout_height="153dp"
-        android:text="TextView"
+    <ListView
+        android:id="@+id/formulaListView"
+        android:layout_width="409dp"
+        android:layout_height="625dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginEnd="1dp"
+        android:layout_marginBottom="1dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
