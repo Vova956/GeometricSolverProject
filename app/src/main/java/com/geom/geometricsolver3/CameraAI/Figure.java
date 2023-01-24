@@ -1,23 +1,24 @@
 package com.geom.geometricsolver3.CameraAI;
 
 import org.opencv.core.*;
+
 import java.util.ArrayList;
 
-public class MyFigure {
+public class Figure {
     private FigureEnum type;
     private Mat src;
     private Rect rect;
     private MatOfPoint matOfPoint;
     private ArrayList<Point> MainPoints = new ArrayList<>();
 
-    public MyFigure(FigureEnum type, Mat src, Rect rect, MatOfPoint matOfPoint) {
+    public Figure(FigureEnum type, Mat src, Rect rect, MatOfPoint matOfPoint) {
         this.type = type;
         this.src = src;
         this.rect = rect;
         this.matOfPoint = matOfPoint;
     }
 
-    public MyFigure(){
+    public Figure(){
         type = FigureEnum.UNDEFINED;
         src = new Mat();
         rect = new Rect();
@@ -35,7 +36,7 @@ public class MyFigure {
 
     private boolean checkForBadPoint(Point p1, Point p2, Point p3){
         double y = (p3.x - p1.x) * (p2.y - p1.y)/(p2.x-p1.x) + p1.y;
-
+        
         return p3.y > y - 20 && p3.y < y + 20;
     }
 
@@ -89,7 +90,7 @@ public class MyFigure {
             if(DownPoint.y < AllPoint[i].y)
                 DownPoint = AllPoint[i];
         }
-
+        
         Point cornerPoints[] = new Point[4];
         cornerPoints[0] = UpPoint;
         cornerPoints[1] = LeftPoint;
@@ -131,6 +132,10 @@ public class MyFigure {
             type = FigureEnum.TRIANGLE;
     }
 
+    public void setFigureType(FigureEnum figureType){
+        type = figureType;
+    }
+
     public Point[] getImportantPoints(){
         Point[] allPoints = matOfPoint.toArray();
         Point center = getRectCenter();
@@ -167,7 +172,7 @@ public class MyFigure {
         return new Point((2*rect.x + rect.width)/2.0, (2*rect.y + rect.height)/2.0);
     }
 
-    public Point[] getRectanglepoints(){
+    public Point[] getRectanglePoints(){
         Point[] points = new Point[4];
         points[0] = (new Point(rect.x, rect.y));
         points[1] = (new Point(rect.x + rect.width, rect.y));
