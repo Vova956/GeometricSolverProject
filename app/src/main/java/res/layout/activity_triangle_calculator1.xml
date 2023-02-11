@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/gradient"
+    tools:context="com.geom.geometricsolver3.Activities.TriangleCalculator1">
+
+    <ImageView
+        android:id="@+id/calculator1_image1"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
+        android:contentDescription="@string/equilateral_triangle"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/calculation_equalateral_triangle" />
+
+    <TextView
+        android:id="@+id/calculation1_textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:fontFamily="@font/montserrat"
+        android:text="@string/r"
+        android:textAlignment="textStart"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/calculator1_image1"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/calculation1_textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:fontFamily="@font/montserrat"
+        android:text="@string/r2"
+        android:textAlignment="textStart"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="@+id/calculation1_textView1"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/calculation1_textView1"
+        app:layout_constraintTop_toBottomOf="@+id/calculation1_textView1" />
+
+    <TextView
+        android:id="@+id/calculation1_textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:fontFamily="@font/montserrat"
+        android:text="@string/a"
+        android:textAlignment="textStart"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="@+id/calculation1_textView2"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/calculation1_textView2"
+        app:layout_constraintTop_toBottomOf="@+id/calculation1_textView2" />
+
+    <EditText
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:id="@+id/calculator1_editText_R"
+        android:maxLength="5"
+        android:layout_width="70dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:cursorVisible="false"
+        android:ems="10"
+        android:fontFamily="@font/montserrat"
+        android:hint="@string/empty"
+        android:importantForAutofill="no"
+        android:inputType="textPersonName"
+        android:linksClickable="true"
+        android:minHeight="48dp"
+        app:layout_constraintBottom_toBottomOf="@+id/calculation1_textView1"
+        app:layout_constraintStart_toEndOf="@+id/calculation1_textView1"
+        app:layout_constraintTop_toTopOf="@+id/calculation1_textView1"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <EditText
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:id="@+id/calculator1_editText_r"
+        android:maxLength="5"
+        android:cursorVisible="false"
+        android:layout_width="70dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:ems="10"
+        android:fontFamily="@font/montserrat"
+        android:importantForAutofill="no"
+        android:inputType="textPersonName"
+        android:textAlignment="textStart"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@+id/calculation1_textView2"
+        app:layout_constraintStart_toEndOf="@+id/calculation1_textView2"
+        app:layout_constraintTop_toTopOf="@+id/calculation1_textView2"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <EditText
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:id="@+id/calculator1_editText_a"
+        android:maxLength="5"
+        android:cursorVisible="false"
+        android:layout_width="70dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:ems="10"
+        android:fontFamily="@font/montserrat"
+        android:importantForAutofill="no"
+        android:inputType="textPersonName"
+        android:textAlignment="textStart"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@+id/calculation1_textView3"
+        app:layout_constraintStart_toEndOf="@+id/calculation1_textView3"
+        app:layout_constraintTop_toTopOf="@+id/calculation1_textView3"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <Button
+        android:id="@+id/calculator1_solutionButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/buttton_style"
+        android:text="@string/solve"
+        android:textAlignment="textStart"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/calculator1_image1"
+        app:layout_constraintVertical_bias="0.0"
+        tools:ignore="TextContrastCheck" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/calculator1_keyboard"
+        android:layout_width="match_parent"
+        android:layout_height="185dp"
+        android:layout_marginStart="2dp"
+        android:layout_marginEnd="2dp"
+        android:layout_marginBottom="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+        android:id="@+id/calculation1_answerTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="5dp"
+        android:fontFamily="@font/montserrat"
+        android:maxLines="100"
+        android:scrollbars="vertical"
+        android:text="@string/empty"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="@+id/calculator1_solutionButton"
+        app:layout_constraintStart_toStartOf="@+id/calculator1_solutionButton"
+        app:layout_constraintTop_toBottomOf="@+id/calculator1_solutionButton" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
