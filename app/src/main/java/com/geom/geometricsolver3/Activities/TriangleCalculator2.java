@@ -5,11 +5,16 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.geom.geometricsolver3.Calculations.Calculation2SolveClass;
@@ -20,17 +25,25 @@ import com.geom.geometricsolver3.Math.MistakeChecker;
 import com.geom.geometricsolver3.R;
 import com.geom.geometricsolver3.Math.SquareNumber;
 
+import java.io.FileNotFoundException;
+import java.io.InputStream;
+
 public class TriangleCalculator2 extends AppCompatActivity{
     private FragmentManager fragmentManager;
     private FragmentTransaction transaction;
     private Keyboard keyboard;
     private boolean isKeyboard = false;
+    private final int Pick_image = 1;
+
+    private ImageView image;
 
     @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_triangle_calculator2);
+
+        image = findViewById(R.id.imageView);
 
         setTitle("Triangle");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -140,8 +153,38 @@ public class TriangleCalculator2 extends AppCompatActivity{
                 answer.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
                 answer.setText("INVALID INPUT");
             }
+
         });
 
+        Button pictureButton = findViewById(R.id.solve_by_picture_Button);
+        pictureButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent photoPickerIntent = new Intent(Intent.ACTION_PICK);
+                photoPickerIntent.setType("image/*");
+                startActivityForResult(photoPickerIntent, Pick_image);
+            }
+        });
+    }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent imageReturnedIntent) {
+        super.onActivityResult(requestCode, resultCode, imageReturnedIntent);
+
+        switch (requestCode) {
+            case Pick_image:
+                if (resultCode == RESULT_OK) {
+                    try {
+                        Uri imageUri = imageReturnedIntent.getData();
+                        InputStream imageStream = getContentResolver().openInputStream(imageUri);
+                        Bitmap selectedImage = BitmapFactory.decodeStream(imageStream);
+
+
+
+                    } catch (FileNotFoundException e) {
+                        e.printStackTrace();
+                    }
+                }
+        }
     }
 }

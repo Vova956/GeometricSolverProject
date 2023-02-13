@@ -28,12 +28,32 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
-    sourceSets {
+    /*sourceSets {
         main {
             jni {
                 srcDirs 'src\\main\\jni', 'src\\main\\jniLibs'
             }
         }
+    }*/
+    packagingOptions {
+        resources.excludes.add("META-INF/*")
+        resources.excludes.add("META-INF/**/*")
+        exclude("META-INF/DEPENDENCIES")
+        exclude("META-INF/*")
+        exclude("META-INF/LICENSE")
+        exclude("META-INF/LICENSE.txt")
+        exclude("META-INF/license.txt")
+        exclude("META-INF/NOTICE")
+        exclude("META-INF/NOTICE.txt")
+        exclude("META-INF/notice.txt")
+        exclude("META-INF/ASL2.0")
+        exclude("META-INF/*.kotlin_module")
+        exclude("META-INF/*.json")
+        exclude 'allclasses-frame.html'
+        exclude 'allclasses-noframe.html'
+
+
+
     }
 }
 
@@ -44,8 +64,6 @@ dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     implementation 'com.google.android.gms:play-services-ads:21.0.0'
     implementation 'android.arch.persistence.room:runtime:1.1.1'
-    implementation 'org.demen.android.opencv:opencv:1.0.1'
-    implementation 'com.quickbirdstudios:opencv:4.5.3'
     implementation 'org.deeplearning4j:deeplearning4j-core:1.0.0-M2.1'
     annotationProcessor 'android.arch.persistence.room:compiler:1.1.1'
     testImplementation 'junit:junit:4.13.2'
