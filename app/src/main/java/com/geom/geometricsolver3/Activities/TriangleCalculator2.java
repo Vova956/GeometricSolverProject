@@ -18,6 +18,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.geom.geometricsolver3.Calculations.Calculation2SolveClass;
+import com.geom.geometricsolver3.CameraAI.AIThread;
 import com.geom.geometricsolver3.Math.CalculatorThread;
 import com.geom.geometricsolver3.Math.GeometryException;
 import com.geom.geometricsolver3.Fragments.Keyboard;
@@ -35,7 +36,8 @@ public class TriangleCalculator2 extends AppCompatActivity{
     private boolean isKeyboard = false;
     private final int Pick_image = 1;
 
-    private ImageView image;
+    private TextView answer;
+
 
     @SuppressLint("ClickableViewAccessibility")
     @Override
@@ -43,7 +45,7 @@ public class TriangleCalculator2 extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_triangle_calculator2);
 
-        image = findViewById(R.id.imageView);
+
 
         setTitle("Triangle");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -79,7 +81,7 @@ public class TriangleCalculator2 extends AppCompatActivity{
         }
 
         Button solveButton = findViewById(R.id.calculator2_solutionButton);
-        TextView answer = findViewById(R.id.calculation2_answerTextView);
+        answer = findViewById(R.id.calculation2_answerTextView);
 
         solveButton.setOnClickListener(evt->{
             answer.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
@@ -179,7 +181,10 @@ public class TriangleCalculator2 extends AppCompatActivity{
                         InputStream imageStream = getContentResolver().openInputStream(imageUri);
                         Bitmap selectedImage = BitmapFactory.decodeStream(imageStream);
 
-
+                        AIThread aiThread = new AIThread(selectedImage);
+                        aiThread.setExitStrategy(()->{
+                            answer.setText("IT WORKED!");
+                        });
 
                     } catch (FileNotFoundException e) {
                         e.printStackTrace();
