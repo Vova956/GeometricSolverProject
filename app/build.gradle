@@ -1,10 +1,13 @@
 plugins {
     id 'com.android.application'
-    id 'com.google.gms.google-services'
 }
 
 android {
     compileSdk 31
+
+    configurations {
+        all*.exclude group: 'org.bytedeco' // This removes all other versions of `support-v4` if gets duplicated from all the artifacts.
+    }
 
     defaultConfig {
         applicationId 'com.geom.geometricsolver3'
@@ -57,7 +60,6 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.4.1'
     implementation 'com.google.android.material:material:1.6.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
-    implementation 'com.google.android.gms:play-services-ads:21.0.0'
     implementation 'android.arch.persistence.room:runtime:1.1.1'
     implementation 'org.deeplearning4j:deeplearning4j-core:1.0.0-M2.1'
     annotationProcessor 'android.arch.persistence.room:compiler:1.1.1'
@@ -67,5 +69,10 @@ dependencies {
     implementation "androidx.core:core-ktx:1.6.0"
     //noinspection GradleCompatible
     implementation 'com.android.support:design:26.0.0-beta1'
+    implementation group: 'org.opencv', name: 'opencv-android', version: '1.0.1'
     coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:1.1.5'
+    implementation 'org.datavec:datavec-data-image:1.0.0-M2.1'
+
+    implementation group: 'org.bytedeco.javacpp-presets', name: 'opencv', version: '2.4.10-0.10'
 }
+

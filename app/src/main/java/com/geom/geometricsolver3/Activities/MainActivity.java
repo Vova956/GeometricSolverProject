@@ -12,8 +12,6 @@ import android.view.MenuItem;
 import android.widget.ImageButton;
 
 import com.geom.geometricsolver3.R;
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdView;
 
 public class MainActivity extends AppCompatActivity {
     //ca-app-pub-5814028506169648/4816446203
@@ -22,7 +20,6 @@ public class MainActivity extends AppCompatActivity {
     //ca-app-pub-5814028506169648~7879675580
     //ca-app-pub-5814028506169648/4234646872
     private static final String TAG = "MainActivity";
-    private AdView mAdView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,11 +27,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         setTitle("Geometry calculator");
 
-        ///
-        mAdView = findViewById(R.id.adView);
-        AdRequest adRequest = new AdRequest.Builder().build();
-        mAdView.loadAd(adRequest);
-        ///
+
 
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
 
@@ -120,24 +113,4 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-
-        mAdView.resume();
-    }
-
-    @Override
-    protected void onPause() {
-        mAdView.pause();
-
-        super.onPause();
-    }
-
-    @Override
-    protected void onDestroy() {
-        mAdView.destroy();
-
-        super.onDestroy();
-    }
 }

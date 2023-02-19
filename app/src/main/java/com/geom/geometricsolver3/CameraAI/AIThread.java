@@ -4,6 +4,7 @@ import android.graphics.Bitmap;
 
 import com.geom.geometricsolver3.Interfaces.IPostAction;
 
+
 import org.opencv.android.Utils;
 import org.opencv.core.Mat;
 import org.opencv.imgcodecs.Imgcodecs;
@@ -27,6 +28,7 @@ public class AIThread extends Thread{
 
     @Override
     public void run() {
+
         Mat mat = new Mat();
         Bitmap bmp32 = target.copy(Bitmap.Config.ARGB_8888, true);
         Utils.bitmapToMat(bmp32, mat);
@@ -58,7 +60,6 @@ public class AIThread extends Thread{
         for (int i = 0; i < figures.size(); i++) {
             if(i == FigureIndex) continue;
             try{
-                Mat stuff = figures.get(i).getObjectMat();
                 figures.get(i).setFigureType(FigureEnum.NUMBER);
             }catch (Exception e){
                 System.out.println("FAILED TO PROCESS MAT NUMBER " + i);

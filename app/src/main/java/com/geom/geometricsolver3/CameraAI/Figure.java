@@ -1,7 +1,6 @@
 package com.geom.geometricsolver3.CameraAI;
 
 import org.opencv.core.*;
-
 import java.util.ArrayList;
 
 public class Figure {
